@@ -1,32 +1,28 @@
 from __future__ import division
 import numpy as np
 
+epsilon = 1e-8
+
+# KLDivLoss = SoftmaxCrossEntropyLoss, because log(1) = 0, 0log(0) = 0
 class KLDivLoss(object):
     def __init__(self, name):
         self.name = name
-
+    
     def forward(self, input, target): # (100 x 10), (100 x 10)
         # TODO START
         h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
-        log_h = np.log(h)
-        log_target = np.where(target == 0, 0, np.log(target))
-        # loss 
+        log_h = np.where(target == 0, 0, np.log(h + epsilon))
+        log_target = np.where(target == 0, 0, np.log(target + epsilon))
         loss = np.mean(target * (log_target - log_h))
-        # h = exp(x_k) / sum(exp(x))
-        # h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
-        # print(target[0], h[0])
-        # print((np.log(target) - np.log(h))[0])
-        # loss = mean(target * (log(target) - log(h)))
-        # loss = np.mean(target * (np.log(target) - np.log(h)))
+        # print("DEBUG:", target * (log_target - log_h))
         return loss
         # TODO END
 
     def backward(self, input, target):
 		# TODO START
-        '''Your codes here'''
         h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
         grad = h - target
-        return grad
+        return grad / target.shape[0]
 		# TODO END
 
 class SoftmaxCrossEntropyLoss(object):
@@ -35,19 +31,17 @@ class SoftmaxCrossEntropyLoss(object):
 
     def forward(self, input, target):
         # TODO START
-        exp_input = np.exp(input - np.max(input, axis=1, keepdims=True))
-        self.softmax_output = exp_input / np.sum(exp_input, axis=1, keepdims=True)
-        
-        num_samples = input.shape[0]
-        loss = -np.sum(target * np.log(self.softmax_output + 1e-8)) / num_samples
+        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        log_h = np.where(target == 0, 0, np.log(h + epsilon))
+        loss = -np.mean(target * log_h)
         return loss
         # TODO END
 
     def backward(self, input, target):
         # TODO START
-        num_samples = input.shape[0]
-        grad = (self.softmax_output - target) / num_samples
-        return grad
+        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        grad = h - target
+        return grad / target.shape[0]
         # TODO END
 
 
@@ -88,3 +82,46 @@ class FocalLoss(object):
         '''Your codes here'''
         pass
         # TODO END
+
+if __name__ == "__main__":
+    from torch.nn.modules.loss import KLDivLoss as TorchKLDivLoss
+    import torch
+    from torch import nn
+    import numpy as np
+    
+    # inputs = [-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]
+    # label = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+    # inputs = np.array(inputs)
+    # label = np.array(label)
+    # inputs = inputs.reshape(1, -1)
+    # label = label.reshape(1, -1)
+
+    logits = torch.randn(10, 5, requires_grad=True)
+    log_probs = torch.log_softmax(logits, dim=1)
+
+    target_probs = torch.rand(10, 5)
+    target_probs /= target_probs.sum(dim=1, keepdim=True)
+    target_probs = target_probs.detach()  # No grad needed for target
+
+    # KL
+    # my_loss = KLDivLoss("loss")
+    # torch_loss = nn.KLDivLoss(reduction='batchmean')
+    
+    # SoftmaxCrossEntropy
+    my_loss = SoftmaxCrossEntropyLoss("loss")
+    torch_loss = nn.CrossEntropyLoss()
+
+    my_forward = my_loss.forward(log_probs.detach().numpy(), target_probs.numpy())
+    torch_forward = torch_loss(log_probs, target_probs)
+
+    print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
+
+    torch_forward.backward()
+    my_backward = my_loss.backward(log_probs.detach().numpy(), target_probs.numpy())
+
+    print("My Backward:\n", my_backward)
+    print("Torch Gradient:\n", logits.grad.numpy())
+
+    print("Difference in gradients:\n", np.abs(my_backward - logits.grad.numpy()))
+    
+    assert np.allclose(my_backward, logits.grad.numpy()), "Gradients are not equal!"
