@@ -44,6 +44,32 @@ class SoftmaxCrossEntropyLoss(object):
         return grad / target.shape[0]
         # TODO END
 
+# class HingeLoss(object):
+#     def __init__(self, name, margin=1):
+#         self.name = name
+#         self.margin = margin
+
+#     def softmax(self, x):
+#         exps = np.exp(x - np.max(x, axis=1, keepdims=True))
+#         return exps / np.sum(exps, axis=1, keepdims=True)
+
+#     def forward(self, input, target):
+#         probabilities = self.softmax(input)
+#         correct_class_scores = probabilities[np.arange(len(target)), target].reshape(-1, 1)
+        
+#         margins = np.maximum(0, self.margin - correct_class_scores + probabilities)
+#         margins[np.arange(len(target)), target] = 0  # Do not consider correct class in the loss calculation
+#         loss = np.sum(margins) / len(target)
+        
+#         return loss
+
+#     def backward(self, input, target):
+#         probabilities = self.softmax(input)
+#         dscores = probabilities
+#         dscores[np.arange(len(target)), target] -= 1
+#         dscores = dscores * (probabilities > 0)  # Only include positive contributions
+#         return dscores / len(target)
+
 
 class HingeLoss(object):
     def __init__(self, name, margin=5):
@@ -52,17 +78,30 @@ class HingeLoss(object):
 
     def forward(self, input, target):
         # TODO START 
-        '''Your codes here'''
-        pass
+        # \text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i])^p}{\text{x.size}(0)}
+        idx = np.argmax(target, axis=1)
+        pred_gt = input[np.arange(input.shape[0]), idx].reshape(-1, 1)
+        print(input, target)
+        print(pred_gt)
+        E = np.maximum(0, self.margin - pred_gt + input)
+        E[np.arange(input.shape[0]), idx] = 0
+        loss = np.sum(E) / input.shape[1]
+        return loss
+        # TODO: Add a softmax before the HingeLoss fn and set delta as 0.5
         # TODO END
 
     def backward(self, input, target):
         # TODO START
-        '''Your codes here'''
-        pass
+        idx = np.argmax(target, axis=1)
+        pred_gt = input[np.arange(input.shape[0]), idx].reshape(-1, 1)
+        E = self.margin - pred_gt + input
+        grad = np.zeros_like(input)
+        mask = E > 0
+        grad[mask] = 1
+        grad[np.arange(input.shape[0]), idx] -= np.sum(mask, axis=1)
+        return grad / input.shape[1]
         # TODO END
-
-
+        
 # Bonus
 class FocalLoss(object):
     def __init__(self, name, alpha=None, gamma=2.0):
@@ -88,13 +127,15 @@ if __name__ == "__main__":
     import torch
     from torch import nn
     import numpy as np
-    
-    # inputs = [-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]
-    # label = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-    # inputs = np.array(inputs)
-    # label = np.array(label)
-    # inputs = inputs.reshape(1, -1)
-    # label = label.reshape(1, -1)
+    randomization = False
+    # inputs = [[-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532], [-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]]
+    # label = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+    # 5.34376
+    inputs = [[-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]]
+    label = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+    idx = np.argmax(label, axis=1)
+    inputs = np.array(inputs)
+    label = np.array(label)
 
     logits = torch.randn(10, 5, requires_grad=True)
     log_probs = torch.log_softmax(logits, dim=1)
@@ -108,20 +149,31 @@ if __name__ == "__main__":
     # torch_loss = nn.KLDivLoss(reduction='batchmean')
     
     # SoftmaxCrossEntropy
-    my_loss = SoftmaxCrossEntropyLoss("loss")
-    torch_loss = nn.CrossEntropyLoss()
-
-    my_forward = my_loss.forward(log_probs.detach().numpy(), target_probs.numpy())
-    torch_forward = torch_loss(log_probs, target_probs)
-
-    print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
-
-    torch_forward.backward()
-    my_backward = my_loss.backward(log_probs.detach().numpy(), target_probs.numpy())
-
-    print("My Backward:\n", my_backward)
-    print("Torch Gradient:\n", logits.grad.numpy())
-
-    print("Difference in gradients:\n", np.abs(my_backward - logits.grad.numpy()))
+    # my_loss = SoftmaxCrossEntropyLoss("loss")
+    # torch_loss = nn.CrossEntropyLoss()
     
-    assert np.allclose(my_backward, logits.grad.numpy()), "Gradients are not equal!"
+    # HingeLoss
+    # my_loss = HingeLoss("loss")
+    # torch_loss = nn.MultiMarginLoss(p=1, margin=5)
+
+    if randomization:
+        my_forward = my_loss.forward(log_probs.detach().numpy(), target_probs.numpy())
+        torch_forward = torch_loss(log_probs, target_probs)
+        print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
+        torch_forward.backward()
+        my_backward = my_loss.backward(log_probs.detach().numpy(), target_probs.numpy())
+        print("My Backward:\n", my_backward)
+        print("Torch Gradient:\n", logits.grad.numpy())
+        print("Difference in gradients:\n", np.abs(my_backward - logits.grad.numpy()))
+        assert np.allclose(my_backward, logits.grad.numpy()), "Gradients are not equal!"
+    else:
+        my_forward = my_loss.forward(inputs, label)
+        inputs = torch.tensor(inputs, requires_grad=True)
+        torch_forward = torch_loss(inputs, torch.tensor(idx))
+        print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
+        torch_forward.backward()
+        my_backward = my_loss.backward(inputs.detach().numpy(), label)
+        print("My Backward:\n", my_backward)
+        print("Torch Gradient:\n", inputs.grad.numpy())
+        print("Difference in gradients:\n", np.abs(my_backward - inputs.grad.numpy()))
+        assert np.allclose(my_backward, logits.grad.numpy()), "Gradients are not equal!"

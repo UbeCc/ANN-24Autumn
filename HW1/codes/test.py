@@ -1,46 +1,52 @@
-import torch
-import torch.nn as nn
 import numpy as np
-epsilon = 1e-8
-# Custom KL Divergence Loss
-class KLDivLoss(object):
-    def __init__(self, name):
-        self.name = name
 
-    def forward(self, input, target):
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
-        log_h = np.where(target == 0, 0, np.log(h + epsilon))
-        log_target = np.where(target == 0, 0, np.log(target + epsilon))
-        loss = np.mean(target * (log_target - log_h))
-        return loss
+class HingeLoss:
+    def __init__(self, margin=1.0, power=1):
+        """
+        Initializes the HingeLoss class.
 
-    def backward(self, input, target):
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
-        grad = h - target
-        return grad / target.shape[0]  # Ensure mean reduction
+        Parameters:
+        - margin (float): The margin parameter in hinge loss calculation.
+        - power (int): The power to which the hinge loss terms are raised.
+        """
+        self.margin = margin
+        self.power = power
 
-# PyTorch setup
-logits = torch.randn(10, 5, requires_grad=True)
-log_probs = torch.log_softmax(logits, dim=1)
+    def compute(self, x, y):
+        """
+        Compute the hinge loss for the provided scores and labels.
 
-target_probs = torch.rand(10, 5)
-target_probs /= target_probs.sum(dim=1, keepdim=True)
-target_probs = target_probs.detach()  # No grad needed for target
+        Parameters:
+        - x (numpy.ndarray): The scores for each class, shape should be [n_samples, n_classes].
+        - y (numpy.ndarray): The actual labels, shape should be [n_samples] and contains indices of the correct classes.
 
-# Custom and PyTorch loss calculation
-my_loss = KLDivLoss("loss")
-torch_loss = nn.KLDivLoss(reduction='batchmean')
+        Returns:
+        - float: The computed hinge loss.
+        """
+        n_samples = x.shape[0]
+        
+        # Get the correct class scores
+        correct_class_scores = x[np.arange(n_samples), y].reshape(-1, 1)
+        print(correct_class_scores.shape, "X", x.shape)
+        # Calculate the loss matrix
+        loss_matrix = np.maximum(0, self.margin - correct_class_scores + x)
+        print(loss_matrix.shape)
+        # Ensure we do not count the correct class in the loss
+        loss_matrix[np.arange(n_samples), y] = 0
+        
+        # Raise the loss to the power if specified
+        if self.power != 1:
+            loss_matrix = np.power(loss_matrix, self.power)
+        
+        # Calculate the mean loss across all samples
+        mean_loss = np.sum(loss_matrix) / n_samples
+        
+        return mean_loss
 
-my_forward = my_loss.forward(log_probs.detach().numpy(), target_probs.numpy())
-torch_forward = torch_loss(log_probs, target_probs)
-
-print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
-
-torch_forward.backward()
-my_backward = my_loss.backward(log_probs.detach().numpy(), target_probs.numpy())
-
-print("My Backward:\n", my_backward)
-print("Torch Gradient:\n", logits.grad.numpy())
-
-# Additional debug info
-print("Difference in gradients:\n", np.abs(my_backward - logits.grad.numpy()))
+# Example usage
+if __name__ == "__main__":
+    x = np.array([[0.1, 0.2], [1.0, 0.2], [0.4, 0.5]])
+    y = np.array([0, 1, 0])
+    hinge_loss_calculator = HingeLoss(margin=1.0, power=1)
+    loss = hinge_loss_calculator.compute(x, y)
+    print(f"Hinge Loss: {loss}")
