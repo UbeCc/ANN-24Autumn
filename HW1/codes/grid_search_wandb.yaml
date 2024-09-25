@@ -1,0 +1,20 @@
+entity: Ubec
+program: grid_run_mlp.py
+method: grid
+metric:
+  name: test_accuracy
+  goal: maximize
+parameters:
+  learning_rate:
+    values: [0.001, 0.005, 0.01]
+  batch_size:
+    values: [32, 64, 128]
+  num_epochs:
+    values: [50]
+  momentum:
+    values: [0.5, 0.7, 0.9]
+  weight_decay:
+    values: [0.0001, 0.0005, 0.001]
+
+# wandb sweep grid_search_wandb.yaml
+# wandb agent w7umfa1d

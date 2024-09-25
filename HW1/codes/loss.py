@@ -13,7 +13,7 @@ class KLDivLoss(object):
         h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
         log_h = np.where(target == 0, 0, np.log(h + epsilon))
         log_target = np.where(target == 0, 0, np.log(target + epsilon))
-        loss = np.mean(target * (log_target - log_h))
+        loss = np.sum(target * (log_target - log_h)) / input.shape[0]
         # print("DEBUG:", target * (log_target - log_h))
         return loss
         # TODO END
@@ -22,7 +22,7 @@ class KLDivLoss(object):
 		# TODO START
         h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
         grad = h - target
-        return grad / target.shape[0]
+        return grad
 		# TODO END
 
 class SoftmaxCrossEntropyLoss(object):
@@ -31,9 +31,10 @@ class SoftmaxCrossEntropyLoss(object):
 
     def forward(self, input, target):
         # TODO START
+        # print(input[0])
         h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
         log_h = np.where(target == 0, 0, np.log(h + epsilon))
-        loss = -np.mean(target * log_h)
+        loss = -np.sum(target * log_h) / input.shape[0]
         return loss
         # TODO END
 
@@ -41,7 +42,8 @@ class SoftmaxCrossEntropyLoss(object):
         # TODO START
         h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
         grad = h - target
-        return grad / target.shape[0]
+        # CHECK: whether divide by bsize? (don't)
+        return grad
         # TODO END
 
 # class HingeLoss(object):
@@ -70,7 +72,7 @@ class SoftmaxCrossEntropyLoss(object):
 #         dscores = dscores * (probabilities > 0)  # Only include positive contributions
 #         return dscores / len(target)
 
-
+# TODO: check correctness
 class HingeLoss(object):
     def __init__(self, name, margin=5):
         self.name = name
@@ -79,30 +81,29 @@ class HingeLoss(object):
     def forward(self, input, target):
         # TODO START 
         # \text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i])^p}{\text{x.size}(0)}
-        idx = np.argmax(target, axis=1)
+        idx = np.argmax(target, axis=1) # prelim: every batch only have one label==1
         pred_gt = input[np.arange(input.shape[0]), idx].reshape(-1, 1)
-        print(input, target)
-        print(pred_gt)
-        E = np.maximum(0, self.margin - pred_gt + input)
-        E[np.arange(input.shape[0]), idx] = 0
-        loss = np.sum(E) / input.shape[1]
+        E = np.maximum(0, self.margin - pred_gt + input) # else
+        E[np.arange(input.shape[0]), idx] = 0 # if $k=t_n$
+        loss = np.sum(E) / input.shape[0]
         return loss
-        # TODO: Add a softmax before the HingeLoss fn and set delta as 0.5
         # TODO END
 
     def backward(self, input, target):
         # TODO START
         idx = np.argmax(target, axis=1)
         pred_gt = input[np.arange(input.shape[0]), idx].reshape(-1, 1)
-        E = self.margin - pred_gt + input
+        E = np.maximum(0, self.margin - pred_gt + input) # else
+        E[np.arange(input.shape[0]), idx] = 0 # if $k=t_n$
         grad = np.zeros_like(input)
         mask = E > 0
         grad[mask] = 1
         grad[np.arange(input.shape[0]), idx] -= np.sum(mask, axis=1)
-        return grad / input.shape[1]
+        return grad
         # TODO END
         
 # Bonus
+# TODO: check correctness of FocalLoss
 class FocalLoss(object):
     def __init__(self, name, alpha=None, gamma=2.0):
         self.name = name
@@ -112,22 +113,34 @@ class FocalLoss(object):
 
     def forward(self, input, target):
         # TODO START
-        '''Your codes here'''
-        pass
+        alpha = np.array(self.alpha).reshape(-1, 1)
+        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        cross_entropy = alpha * target + (1 - alpha) * (1 - target)
+        E = cross_entropy * np.power(1 - h, self.gamma) * target * np.log(h)
+        return -np.sum(E) / input.shape[0]
         # TODO END
 
     def backward(self, input, target):
         # TODO START
-        '''Your codes here'''
-        pass
+        # Reference: https://github.com/namdvt/Focal-loss-pytorch-implementation
+        alpha = np.array(self.alpha).reshape(-1, 1)
+        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        cross_entropy = alpha * target + (1 - alpha) * (1 - target)
+        E = cross_entropy * (self.gamma * np.power(1 - h, self.gamma - 1) * target * np.log(h) - np.pow(1 - h, self.gamma) * target / h)
+        bsize, lines = E.shape[0], E.shape[1]
+        E_col, E_row, I = E.reshape(bsize, 1, lines), E.shape(bsize, lines, 1), np.eye(lines)
+        E_x = -E_row @ E_row + I * E_col
+        return np.sum(E_x * E[:, np.newaxis, :], axis=2)
         # TODO END
 
 if __name__ == "__main__":
     from torch.nn.modules.loss import KLDivLoss as TorchKLDivLoss
     import torch
     from torch import nn
+    import torch.nn.functional as F
     import numpy as np
-    randomization = False
+    
+    with_label = False
     # inputs = [[-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532], [-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]]
     # label = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
     # 5.34376
@@ -143,7 +156,7 @@ if __name__ == "__main__":
     target_probs = torch.rand(10, 5)
     target_probs /= target_probs.sum(dim=1, keepdim=True)
     target_probs = target_probs.detach()  # No grad needed for target
-
+    idx = np.argmax(target_probs, axis=1)
     # KL
     # my_loss = KLDivLoss("loss")
     # torch_loss = nn.KLDivLoss(reduction='batchmean')
@@ -153,12 +166,16 @@ if __name__ == "__main__":
     # torch_loss = nn.CrossEntropyLoss()
     
     # HingeLoss
-    # my_loss = HingeLoss("loss")
-    # torch_loss = nn.MultiMarginLoss(p=1, margin=5)
+    my_loss = HingeLoss("loss")
+    torch_loss = nn.MultiMarginLoss(p=1, margin=5, reduction="mean")
 
-    if randomization:
+    # FocalLoss
+    # my_loss = FocalLoss("loss")
+    
+    if not with_label:
         my_forward = my_loss.forward(log_probs.detach().numpy(), target_probs.numpy())
-        torch_forward = torch_loss(log_probs, target_probs)
+        torch_forward = torch_loss(log_probs, idx)
+        # torch_forward = torch_loss(log_probs, target_probs)
         print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
         torch_forward.backward()
         my_backward = my_loss.backward(log_probs.detach().numpy(), target_probs.numpy())

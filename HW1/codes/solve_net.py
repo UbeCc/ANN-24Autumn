@@ -1,6 +1,10 @@
+import wandb
 from utils import LOG_INFO, onehot_encoding, calculate_acc
 import numpy as np
 
+def report(iter_counter, loss_list, acc_list):
+    # use wandb
+    wandb.log({"batch_loss": np.mean(loss_list), "batch_acc": np.mean(acc_list), "iter": iter_counter})
 
 def data_iterator(x, y, batch_size, shuffle=True):
     indx = list(range(len(x)))
@@ -13,7 +17,6 @@ def data_iterator(x, y, batch_size, shuffle=True):
 
 
 def train_net(model, loss, config, inputs, labels, batch_size, disp_freq):
-
     iter_counter = 0
     loss_list = []
     acc_list = []
@@ -39,6 +42,7 @@ def train_net(model, loss, config, inputs, labels, batch_size, disp_freq):
         acc_list.append(acc_value)
 
         if iter_counter % disp_freq == 0:
+            report(iter_counter, loss_list, acc_list)
             msg = '  Training iter %d, batch loss %.4f, batch acc %.4f' % (iter_counter, np.mean(loss_list), np.mean(acc_list))
             loss_list = []
             acc_list = []
