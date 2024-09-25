@@ -1,0 +1,371 @@
+########################
+# Additional Files
+########################
+# run_grid_search.sh
+# parse.ipynb
+# README.txt
+# summary.txt
+# grid_search_wandb.yaml
+# grid_run_mlp.py
+# calculation.py
+# figs
+# draw.py
+# batch_eval.sh
+# logs
+
+########################
+# Filled Code
+########################
+# ../codes/layers.py:1
+        self.lambda_ = 1.0507
+        self.alpha = 1.67326
+        self._saved_for_backward(input)
+        return self.lambda_ * np.where(input > 0, input, self.alpha * (np.exp(input) - 1))
+
+# ../codes/layers.py:2
+        self.lambda_ = 1.0507
+        self.alpha = 1.67326
+        input = self._saved_tensor
+        return self.lambda_ * np.where(input > 0, grad_output, grad_output * self.alpha * np.exp(input))
+
+# ../codes/layers.py:3
+        self._saved_for_backward(input)
+        return input * np.clip(input + 3, 0, 6) / 6
+
+# ../codes/layers.py:4
+        input = self._saved_tensor
+        grad_input = np.zeros_like(input)
+        grad_input[input < -3] = 0
+        mask = (input > -3) & (input < 3)
+        grad_input[mask] = (2 * input[mask] + 3) / 6
+        grad_input[input > 3] = 1
+        return grad_output * grad_input
+
+# ../codes/layers.py:5
+        fwd_result = (np.exp(input) - np.exp(-input)) / (np.exp(input) + np.exp(-input))
+        self._saved_for_backward(fwd_result)
+        return fwd_result
+
+# ../codes/layers.py:6
+        fwd_result = self._saved_tensor
+        return grad_output * (1 - np.square(fwd_result))
+
+# ../codes/layers.py:7
+        output = np.dot(input, self.W) + self.b
+        self._saved_for_backward(input)
+        return output
+
+# ../codes/layers.py:8
+        input = self._saved_tensor
+        self.grad_W = np.dot(input.T, grad_output)
+        self.grad_b = np.sum(grad_output, axis=0)
+        grad_input = np.dot(grad_output, self.W.T)
+        return grad_input
+
+# ../codes/loss.py:1
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
+        log_h = np.where(target == 0, 0, np.log(h + epsilon))
+        log_target = np.where(target == 0, 0, np.log(target + epsilon))
+        loss = np.sum(target * (log_target - log_h)) / input.shape[0]
+        # print("DEBUG:", target * (log_target - log_h))
+        return loss
+
+# ../codes/loss.py:2
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
+        grad = h - target
+        return grad
+
+# ../codes/loss.py:3
+        # print(input[0])
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
+        log_h = np.where(target == 0, 0, np.log(h + epsilon))
+        loss = -np.sum(target * log_h) / input.shape[0]
+        return loss
+
+# ../codes/loss.py:4
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
+        grad = h - target
+        # CHECK: whether divide by bsize? (don't)
+        return grad
+
+# ../codes/loss.py:5
+        # \text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i])^p}{\text{x.size}(0)}
+        idx = np.argmax(target, axis=1) # prelim: every batch only have one label==1
+        pred_gt = input[np.arange(input.shape[0]), idx].reshape(-1, 1)
+        E = np.maximum(0, self.margin - pred_gt + input) # else
+        E[np.arange(input.shape[0]), idx] = 0 # if $k=t_n$
+        loss = np.sum(E) / input.shape[0]
+        return loss
+
+# ../codes/loss.py:6
+        idx = np.argmax(target, axis=1)
+        pred_gt = input[np.arange(input.shape[0]), idx].reshape(-1, 1)
+        E = np.maximum(0, self.margin - pred_gt + input) # else
+        E[np.arange(input.shape[0]), idx] = 0 # if $k=t_n$
+        grad = np.zeros_like(input)
+        mask = E > 0
+        grad[mask] = 1
+        grad[np.arange(input.shape[0]), idx] -= np.sum(mask, axis=1)
+        return grad
+
+# ../codes/loss.py:7
+        alpha = np.array(self.alpha)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
+        cross_entropy = alpha * target + (1 - alpha) * (1 - target)
+        E = cross_entropy * np.power(1 - h, self.gamma) * target * np.log(h)
+        return -np.sum(E) / input.shape[0]
+
+# ../codes/loss.py:8
+        # Reference: https://github.com/namdvt/Focal-loss-pytorch-implementation
+        alpha = np.array(self.alpha)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
+        cross_entropy = alpha * target + (1 - alpha) * (1 - target)
+        E = cross_entropy * (self.gamma * np.power(1 - h, self.gamma - 1) * target * np.log(h) - np.power(1 - h, self.gamma) * target / h)
+        bsize, lines = E.shape[0], E.shape[1]
+        h_col, h_row, I = h.reshape(bsize, 1, lines), h.reshape(bsize, lines, 1), np.eye(lines)
+        h_x = -h_row @ h_col + I * h_col
+        return np.sum(h_x * E[:, np.newaxis, :], axis=2)
+
+
+########################
+# References
+########################
+# https://github.com/namdvt/Focal-loss-pytorch-implementation
+
+########################
+# Other Modifications
+########################
+# _codes/run_mlp.py -> ../codes/run_mlp.py
+# 1 + import time
+# 2 + import argparse
+# 4 - from loss import KLDivLoss, SoftmaxCrossEntropyLoss, HingeLoss
+# 6 + from loss import KLDivLoss, SoftmaxCrossEntropyLoss, HingeLoss, FocalLoss
+# 6 ?                                                               +++++++++++
+# 9 + import wandb
+# 11 + def parse_arguments():
+# 12 +     parser = argparse.ArgumentParser(description="Train a neural network on MNIST data.")
+# 13 +
+# 14 +     parser.add_argument('--project', type=str, default='ANN-HW1', help='WandB project name')
+# 15 +     parser.add_argument('--name', type=str, default='mlp_test', help='WandB run name')
+# 16 +
+# 17 +     parser.add_argument('--learning_rate', type=float, default=1e-5, help='Learning rate for the optimizer')
+# 18 +     parser.add_argument('--weight_decay', type=float, default=0.1, help='Weight decay for the optimizer')
+# 19 +     parser.add_argument('--momentum', type=float, default=0.9, help='Momentum for the optimizer')
+# 20 +     parser.add_argument('--batch_size', type=int, default=100, help='Batch size for training')
+# 21 +     parser.add_argument('--max_epoch', type=int, default=100, help='Maximum number of training epochs')
+# 22 +     parser.add_argument('--disp_freq', type=int, default=100, help='Frequency of displaying training progress')
+# 23 +     parser.add_argument('--test_epoch', type=int, default=1, help='Frequency of testing the model')
+# 24 +     parser.add_argument('--activation', type=str, default='selu', help='Activation function to use')
+# 25 +     parser.add_argument('--loss', type=str, default='softmax', help='Loss function to use')
+# 26 +     return parser.parse_args()
+# 9 - train_data, test_data, train_label, test_label = load_mnist_2d('data')
+# 28 + def main():
+# 29 +     args = parse_arguments()
+# 30 +     start_time = time.time()
+# 31 +     wandb.init(
+# 32 +         project=args.project,
+# 33 +         name=f'{args.name}-{args.activation}-{args.loss}'
+# 34 +     )
+# 11 - # Your model defintion here
+# 12 - # You should explore different model architecture
+# 13 - model = Network()
+# 14 - model.add(Linear('fc1', 784, 10, 0.01))
+# 36 +     activation_dict = {
+# 37 +         'selu': Selu,
+# 38 +         'hardswish': HardSwish,
+# 39 +         'tanh': Tanh
+# 40 +     }
+# 41 +
+# 42 +     loss_dict = {
+# 43 +         'kl': KLDivLoss,
+# 44 +         'softmax': SoftmaxCrossEntropyLoss,
+# 45 +         'hinge': HingeLoss,
+# 46 +         'focal': FocalLoss
+# 47 +     }
+# 48 +
+# 49 +     activation_fn = activation_dict[args.activation]
+# 50 +     loss_fn = loss_dict[args.loss]
+# 16 - loss = KLDivLoss(name='loss')
+# 52 +     train_data, test_data, train_label, test_label = load_mnist_2d('data')
+# 54 +     model = Network()
+# 18 - # Training configuration
+# 19 - # You should adjust these hyperparameters
+# 20 - # NOTE: one iteration means model forward-backwards one batch of samples.
+# 21 - #       one epoch means model has gone through all the training samples.
+# 22 - #       'disp_freq' denotes number of iterations in one epoch to display information.
+# 24 - config = {
+# 25 -     'learning_rate': 0.0,
+# 26 -     'weight_decay': 0.0,
+# 27 -     'momentum': 0.0,
+# 28 -     'batch_size': 100,
+# 29 -     'max_epoch': 100,
+# 30 -     'disp_freq': 50,
+# 31 -     'test_epoch': 5
+# 32 - }
+# 56 +     layers = [784, 128, 10]
+# 57 +     # layers = [784, 245, 10]
+# 58 +     # layers = [784, 245, 137, 77, 10]
+# 59 +     # layers = [784, 438, 245, 183, 137, 77, 43, 24, 10]
+# 60 +     # layers = [784, 586, 438, 328, 245, 227, 183, 137, 102, 77, 57, 43, 32, 24, 18, 13, 10]
+# 61 +     acs = []
+# 62 +     # acs = ['selu', 'selu', 'selu', 'selu']
+# 63 +     # acs = ['hardswish', 'hardswish', 'hardswish', 'hardswish']
+# 64 +     # acs = ['hardswish', 'hardswish', 'selu', 'selu']
+# 65 +     # acs = ['selu', 'selu', 'hardswish', 'hardswish']
+# 67 +     for i in range(len(layers) - 1):
+# 68 +         model.add(Linear('fc%d' % i, layers[i], layers[i + 1], 0.005))
+# 69 +         if i != len(layers) - 2:
+# 70 +             if not acs:
+# 71 +                 print('No activation function specified, using default Tanh')
+# 72 +                 model.add(activation_fn('ac%d' % i))
+# 73 +             else:
+# 74 +                 model.add(activation_dict[acs[i]]('ac%d' % i))
+# 35 - for epoch in range(config['max_epoch']):
+# 36 -     LOG_INFO('Training @ %d epoch...' % (epoch))
+# 37 -     train_net(model, loss, config, train_data, train_label, config['batch_size'], config['disp_freq'])
+# 76 +     # model.add(Linear('fc1', 784, 128, 0.005))
+# 77 +     # model.add(activation_fn('ac'))
+# 78 +     # model.add(Linear('fc2', 128, 10, 0.005))
+# 79 +     # AlexNet-inspired architecture for MNIST
+# 80 +     # model.add(Linear('fc1', 784, 512, 0.005))  # Smaller std for initialization
+# 81 +     # model.add(Tanh('relu1'))                   # Switch to Selu if needed
+# 82 +     # model.add(Linear('fc2', 512, 256, 0.005))
+# 83 +     # model.add(Selu('relu2'))
+# 84 +     # model.add(Linear('fc3', 256, 128, 0.005))
+# 85 +     # model.add(Tanh('relu3'))
+# 86 +     # model.add(Linear('fc4', 128, 10, 0.005))   # Output layer
+# 88 +     # Loss function
+# 89 +     loss = loss_fn(name='loss')
+# 90 +
+# 91 +     config = {
+# 92 +         'learning_rate': args.learning_rate,
+# 93 +         'weight_decay': args.weight_decay,
+# 94 +         'momentum': args.momentum,
+# 95 +         'batch_size': args.batch_size,
+# 96 +         'max_epoch': args.max_epoch,
+# 97 +         'disp_freq': args.disp_freq,
+# 98 +         'test_epoch': args.test_epoch
+# 99 +     }
+# 100 +
+# 101 +     for epoch in range(config['max_epoch']):
+# 102 +         LOG_INFO('Training @ %d epoch...' % (epoch))
+# 103 +         train_net(model, loss, config, train_data, train_label, config['batch_size'], config['disp_freq'])
+# 104 +
+# 39 -     if epoch % config['test_epoch'] == 0:
+# 105 +         if epoch % config['test_epoch'] == 0:
+# 105 ? ++++
+# 40 -         LOG_INFO('Testing @ %d epoch...' % (epoch))
+# 106 +             LOG_INFO('Testing @ %d epoch...' % (epoch))
+# 106 ? ++++
+# 41 -         test_net(model, loss, test_data, test_label, config['batch_size'])
+# 107 +             test_net(model, loss, test_data, test_label, config['batch_size'])
+# 107 ? ++++
+# 108 +
+# 109 +         # last epoch
+# 110 +         if epoch == config['max_epoch'] - 1:
+# 111 +             # save the final result to wandb; final loss / final acc / total time cost
+# 112 +             wandb.log({'total_time': time.time() - start_time})
+# 113 +
+# 114 + if __name__ == "__main__":
+# 115 +     main()
+# _codes/solve_net.py -> ../codes/solve_net.py
+# 1 + import wandb
+# 5 + def report(iter_counter, loss_list, acc_list):
+# 6 +     # use wandb
+# 7 +     wandb.log({"batch_loss": np.mean(loss_list), "batch_acc": np.mean(acc_list), "iter": iter_counter})
+# 16 -
+# 21 -     for input, label in data_iterator(inputs, labels, batch_size):
+# 24 +     for input, label in data_iterator(inputs, labels, batch_size): # (100 x 784), (100 x 1)
+# 24 ?                                                                   +++++++++++++++++++++++++
+# 22 -         target = onehot_encoding(label, 10)
+# 25 +         target = onehot_encoding(label, 10) # (100 x 10)
+# 25 ?                                            +++++++++++++
+# 45 +             if wandb.run:
+# 46 +                 report(iter_counter, loss_list, acc_list)
+# _codes/layers.py -> ../codes/layers.py
+# 2 -
+# 108 -         self.b = self.b - lr * self.diff_b
+# 108 ?                                           -
+# 121 +         self.b = self.b - lr * self.diff_b
+# _codes/loss.py -> ../codes/loss.py
+# 4 + epsilon = 1e-8
+# 6 + # KLDivLoss = SoftmaxCrossEntropyLoss, because log(1) = 0, 0log(0) = 0
+# 8 -
+# 10 +
+# 9 -     def forward(self, input, target):
+# 11 +     def forward(self, input, target): # (100 x 10), (100 x 10)
+# 11 ?                                      +++++++++++++++++++++++++
+# 20 -
+# 38 -
+# 53 + # TODO: check correctness
+# 56 -
+# 57 - # Bonus
+# 113 +
+# 114 + if __name__ == "__main__":
+# 115 +     from torch.nn.modules.loss import KLDivLoss as TorchKLDivLoss
+# 116 +     import torch
+# 117 +     from torch import nn
+# 118 +     import torch.nn.functional as F
+# 119 +     import numpy as np
+# 120 +
+# 121 +     with_label = False
+# 122 +     # inputs = [[-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532], [-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]]
+# 123 +     # label = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+# 124 +     # 5.34376
+# 125 +     inputs = [[-1.5072, -0.5475,  1.6552,  1.3270,  0.1383, -0.1262, -0.4392, -0.6543, 0.0127, -0.9532]]
+# 126 +     label = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+# 127 +     idx = np.argmax(label, axis=1)
+# 128 +     inputs = np.array(inputs)
+# 129 +     label = np.array(label)
+# 130 +
+# 131 +     logits = torch.randn(10, 5, requires_grad=True)
+# 132 +     log_probs = torch.log_softmax(logits, dim=1)
+# 133 +
+# 134 +     target_probs = torch.rand(10, 5)
+# 135 +     target_probs /= target_probs.sum(dim=1, keepdim=True)
+# 136 +     target_probs = target_probs.detach()  # No grad needed for target
+# 137 +     idx = np.argmax(target_probs, axis=1)
+# 138 +     # KL
+# 139 +     # my_loss = KLDivLoss("loss")
+# 140 +     # torch_loss = nn.KLDivLoss(reduction='batchmean')
+# 141 +
+# 142 +     # SoftmaxCrossEntropy
+# 143 +     # my_loss = SoftmaxCrossEntropyLoss("loss")
+# 144 +     # torch_loss = nn.CrossEntropyLoss()
+# 145 +
+# 146 +     # HingeLoss
+# 147 +     my_loss = HingeLoss("loss")
+# 148 +     torch_loss = nn.MultiMarginLoss(p=1, margin=5, reduction="mean")
+# 149 +
+# 150 +     # FocalLoss
+# 151 +     # my_loss = FocalLoss("loss")
+# 152 +
+# 153 +     if not with_label:
+# 154 +         my_forward = my_loss.forward(log_probs.detach().numpy(), target_probs.numpy())
+# 155 +         torch_forward = torch_loss(log_probs, idx)
+# 156 +         # torch_forward = torch_loss(log_probs, target_probs)
+# 157 +         print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
+# 158 +         torch_forward.backward()
+# 159 +         my_backward = my_loss.backward(log_probs.detach().numpy(), target_probs.numpy())
+# 160 +         print("My Backward:\n", my_backward)
+# 161 +         print("Torch Gradient:\n", logits.grad.numpy())
+# 162 +         print("Difference in gradients:\n", np.abs(my_backward - logits.grad.numpy()))
+# 163 +         assert np.allclose(my_backward, logits.grad.numpy()), "Gradients are not equal!"
+# 164 +     else:
+# 165 +         my_forward = my_loss.forward(inputs, label)
+# 166 +         inputs = torch.tensor(inputs, requires_grad=True)
+# 167 +         torch_forward = torch_loss(inputs, torch.tensor(idx))
+# 168 +         print("My Forward:", my_forward, "Torch Forward:", torch_forward.item())
+# 169 +         torch_forward.backward()
+# 170 +         my_backward = my_loss.backward(inputs.detach().numpy(), label)
+# 171 +         print("My Backward:\n", my_backward)
+# 172 +         print("Torch Gradient:\n", inputs.grad.numpy())
+# 173 +         print("Difference in gradients:\n", np.abs(my_backward - inputs.grad.numpy()))
+# 174 +         assert np.allclose(my_backward, logits.grad.numpy()), "Gradients are not equal!"
+

@@ -10,7 +10,7 @@ import numpy as np
 def report(iter_counter, loss_list, acc_list):
     # use wandb
     wandb.log({"batch_loss": np.mean(loss_list), "batch_acc": np.mean(acc_list), "iter": iter_counter})
-    
+
 def main():
     # Initialize wandb
     wandb.init(
