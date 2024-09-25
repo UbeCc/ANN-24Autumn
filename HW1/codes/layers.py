@@ -31,6 +31,7 @@ class Selu(Layer):
         self.lambda_ = 1.0507
         self.alpha = 1.67326
         self._saved_for_backward(input)
+        print(input)
         return self.lambda_ * np.where(input > 0, input, self.alpha * (np.exp(input) - 1))
         # TODO END
 

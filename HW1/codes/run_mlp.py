@@ -8,31 +8,17 @@ from load_data import load_mnist_2d
 
 train_data, test_data, train_label, test_label = load_mnist_2d('data')
 
-# 03:04:46.205   Training iter 100, batch loss 0.0113, batch acc 0.9956
-# 03:04:47.406   Training iter 200, batch loss 0.0147, batch acc 0.9950
-# 03:04:48.507   Training iter 300, batch loss 0.0136, batch acc 0.9948
-# 03:04:49.738   Training iter 400, batch loss 0.0264, batch acc 0.9925
-# 03:04:51.138   Training iter 500, batch loss 0.0185, batch acc 0.9923
-# 03:04:52.331   Training iter 600, batch loss 0.0183, batch acc 0.9933
-# 03:04:53.596   Training iter 700, batch loss 0.0240, batch acc 0.9930
-# 03:04:54.772   Training iter 800, batch loss 0.0192, batch acc 0.9936
-# 03:04:55.960   Training iter 900, batch loss 0.0194, batch acc 0.9939
-# 03:04:56.397 Testing @ 49 epoch...
-# 03:04:56.752     Testing, total mean loss 0.13155, total acc 0.97273
-
-# Your model defintion here
-# You should explore different model architecture
 model = Network()
 
 # AlexNet-inspired architecture for MNIST
 model.add(Linear('fc1', 784, 512, 0.005))  # Smaller std for initialization
-model.add(Selu('relu1'))                   # Switch to Selu if needed
+model.add(Tanh('relu1'))                   # Switch to Selu if needed
 
 model.add(Linear('fc2', 512, 256, 0.005))
 model.add(Selu('relu2'))
 
 model.add(Linear('fc3', 256, 128, 0.005))
-model.add(Selu('relu3'))
+model.add(Tanh('relu3'))
 
 model.add(Linear('fc4', 128, 10, 0.005))   # Output layer
 
@@ -46,10 +32,10 @@ loss = SoftmaxCrossEntropyLoss(name='loss')
 #       'disp_freq' denotes number of iterations in one epoch to display information.
 
 config = {
-    'learning_rate': 0.001,
-    'weight_decay': 0.0005,  # Lower weight decay
+    'learning_rate': 0.01,
+    'weight_decay': 0.0001,  # Lower weight decay
     'momentum': 0.5,         # Higher momentum
-    'batch_size': 64,        # Larger batch size
+    'batch_size': 32,        # Larger batch size
     'max_epoch': 50,         # Reduced number of epochs
     'disp_freq': 100,        # Less frequent display to speed up training
     'test_epoch': 1          # Frequent testing to monitor progress

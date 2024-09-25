@@ -10,7 +10,8 @@ class KLDivLoss(object):
     
     def forward(self, input, target): # (100 x 10), (100 x 10)
         # TODO START
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         log_h = np.where(target == 0, 0, np.log(h + epsilon))
         log_target = np.where(target == 0, 0, np.log(target + epsilon))
         loss = np.sum(target * (log_target - log_h)) / input.shape[0]
@@ -20,7 +21,8 @@ class KLDivLoss(object):
 
     def backward(self, input, target):
 		# TODO START
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         grad = h - target
         return grad
 		# TODO END
@@ -32,7 +34,8 @@ class SoftmaxCrossEntropyLoss(object):
     def forward(self, input, target):
         # TODO START
         # print(input[0])
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         log_h = np.where(target == 0, 0, np.log(h + epsilon))
         loss = -np.sum(target * log_h) / input.shape[0]
         return loss
@@ -40,37 +43,12 @@ class SoftmaxCrossEntropyLoss(object):
 
     def backward(self, input, target):
         # TODO START
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         grad = h - target
         # CHECK: whether divide by bsize? (don't)
         return grad
         # TODO END
-
-# class HingeLoss(object):
-#     def __init__(self, name, margin=1):
-#         self.name = name
-#         self.margin = margin
-
-#     def softmax(self, x):
-#         exps = np.exp(x - np.max(x, axis=1, keepdims=True))
-#         return exps / np.sum(exps, axis=1, keepdims=True)
-
-#     def forward(self, input, target):
-#         probabilities = self.softmax(input)
-#         correct_class_scores = probabilities[np.arange(len(target)), target].reshape(-1, 1)
-        
-#         margins = np.maximum(0, self.margin - correct_class_scores + probabilities)
-#         margins[np.arange(len(target)), target] = 0  # Do not consider correct class in the loss calculation
-#         loss = np.sum(margins) / len(target)
-        
-#         return loss
-
-#     def backward(self, input, target):
-#         probabilities = self.softmax(input)
-#         dscores = probabilities
-#         dscores[np.arange(len(target)), target] -= 1
-#         dscores = dscores * (probabilities > 0)  # Only include positive contributions
-#         return dscores / len(target)
 
 # TODO: check correctness
 class HingeLoss(object):
@@ -114,7 +92,8 @@ class FocalLoss(object):
     def forward(self, input, target):
         # TODO START
         alpha = np.array(self.alpha).reshape(-1, 1)
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         cross_entropy = alpha * target + (1 - alpha) * (1 - target)
         E = cross_entropy * np.power(1 - h, self.gamma) * target * np.log(h)
         return -np.sum(E) / input.shape[0]
@@ -124,7 +103,8 @@ class FocalLoss(object):
         # TODO START
         # Reference: https://github.com/namdvt/Focal-loss-pytorch-implementation
         alpha = np.array(self.alpha).reshape(-1, 1)
-        h = np.exp(input) / np.sum(np.exp(input), axis=1, keepdims=True)
+        mval = np.max(input, axis=1, keepdims=True)
+        h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         cross_entropy = alpha * target + (1 - alpha) * (1 - target)
         E = cross_entropy * (self.gamma * np.power(1 - h, self.gamma - 1) * target * np.log(h) - np.pow(1 - h, self.gamma) * target / h)
         bsize, lines = E.shape[0], E.shape[1]
