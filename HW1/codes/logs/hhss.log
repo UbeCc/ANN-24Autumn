@@ -1,0 +1,901 @@
+
+00:34:40.404 Training @ 0 epoch...
+00:34:42.992   Training iter 100, batch loss 2.3024, batch acc 0.1118
+00:34:45.340   Training iter 200, batch loss 2.3022, batch acc 0.1127
+00:34:47.301   Training iter 300, batch loss 2.3021, batch acc 0.1084
+00:34:48.916   Training iter 400, batch loss 2.3021, batch acc 0.1120
+00:34:50.740   Training iter 500, batch loss 2.3015, batch acc 0.1140
+00:34:52.757   Training iter 600, batch loss 2.3019, batch acc 0.1111
+00:34:52.759 Testing @ 0 epoch...
+00:34:53.275     Testing, total mean loss 2.30153, total acc 0.11350
+00:34:53.276 Training @ 1 epoch...
+00:34:55.882   Training iter 100, batch loss 2.3016, batch acc 0.1114
+00:34:57.629   Training iter 200, batch loss 2.3013, batch acc 0.1111
+00:34:59.119   Training iter 300, batch loss 2.3016, batch acc 0.1129
+00:35:00.442   Training iter 400, batch loss 2.3014, batch acc 0.1139
+00:35:02.337   Training iter 500, batch loss 2.3017, batch acc 0.1110
+00:35:04.459   Training iter 600, batch loss 2.3011, batch acc 0.1139
+00:35:04.461 Testing @ 1 epoch...
+00:35:04.674     Testing, total mean loss 2.30119, total acc 0.11350
+00:35:04.675 Training @ 2 epoch...
+00:35:06.746   Training iter 100, batch loss 2.3017, batch acc 0.1121
+00:35:08.382   Training iter 200, batch loss 2.3009, batch acc 0.1169
+00:35:10.284   Training iter 300, batch loss 2.3009, batch acc 0.1142
+00:35:12.032   Training iter 400, batch loss 2.3018, batch acc 0.1072
+00:35:14.052   Training iter 500, batch loss 2.3017, batch acc 0.1107
+00:35:16.151   Training iter 600, batch loss 2.3008, batch acc 0.1131
+00:35:16.154 Testing @ 2 epoch...
+00:35:16.454     Testing, total mean loss 2.30109, total acc 0.11350
+00:35:16.454 Training @ 3 epoch...
+00:35:18.498   Training iter 100, batch loss 2.3015, batch acc 0.1111
+00:35:20.264   Training iter 200, batch loss 2.3014, batch acc 0.1136
+00:35:21.875   Training iter 300, batch loss 2.3012, batch acc 0.1113
+00:35:23.800   Training iter 400, batch loss 2.3013, batch acc 0.1088
+00:35:25.574   Training iter 500, batch loss 2.3016, batch acc 0.1136
+00:35:27.165   Training iter 600, batch loss 2.3005, batch acc 0.1158
+00:35:27.168 Testing @ 3 epoch...
+00:35:27.415     Testing, total mean loss 2.30105, total acc 0.11350
+00:35:27.416 Training @ 4 epoch...
+00:35:29.559   Training iter 100, batch loss 2.3008, batch acc 0.1115
+00:35:31.501   Training iter 200, batch loss 2.3014, batch acc 0.1135
+00:35:33.509   Training iter 300, batch loss 2.3012, batch acc 0.1109
+00:35:34.918   Training iter 400, batch loss 2.3011, batch acc 0.1118
+00:35:36.372   Training iter 500, batch loss 2.3014, batch acc 0.1147
+00:35:38.260   Training iter 600, batch loss 2.3014, batch acc 0.1118
+00:35:38.264 Testing @ 4 epoch...
+00:35:38.513     Testing, total mean loss 2.30103, total acc 0.11350
+00:35:38.514 Training @ 5 epoch...
+00:35:41.134   Training iter 100, batch loss 2.3009, batch acc 0.1151
+00:35:43.453   Training iter 200, batch loss 2.3018, batch acc 0.1077
+00:35:45.458   Training iter 300, batch loss 2.3016, batch acc 0.1105
+00:35:46.939   Training iter 400, batch loss 2.3012, batch acc 0.1125
+00:35:48.589   Training iter 500, batch loss 2.3007, batch acc 0.1156
+00:35:50.886   Training iter 600, batch loss 2.3010, batch acc 0.1128
+00:35:50.889 Testing @ 5 epoch...
+00:35:51.113     Testing, total mean loss 2.30103, total acc 0.11350
+00:35:51.114 Training @ 6 epoch...
+00:35:53.176   Training iter 100, batch loss 2.3012, batch acc 0.1133
+00:35:54.740   Training iter 200, batch loss 2.3014, batch acc 0.1090
+00:35:56.549   Training iter 300, batch loss 2.3010, batch acc 0.1093
+00:35:58.104   Training iter 400, batch loss 2.3014, batch acc 0.1139
+00:35:59.702   Training iter 500, batch loss 2.3012, batch acc 0.1140
+00:36:01.943   Training iter 600, batch loss 2.3011, batch acc 0.1147
+00:36:01.945 Testing @ 6 epoch...
+00:36:02.236     Testing, total mean loss 2.30103, total acc 0.11350
+00:36:02.236 Training @ 7 epoch...
+00:36:03.639   Training iter 100, batch loss 2.3007, batch acc 0.1154
+00:36:04.962   Training iter 200, batch loss 2.3013, batch acc 0.1109
+00:36:06.224   Training iter 300, batch loss 2.3014, batch acc 0.1092
+00:36:07.517   Training iter 400, batch loss 2.3015, batch acc 0.1149
+00:36:09.220   Training iter 500, batch loss 2.3012, batch acc 0.1117
+00:36:10.644   Training iter 600, batch loss 2.3011, batch acc 0.1121
+00:36:10.647 Testing @ 7 epoch...
+00:36:10.870     Testing, total mean loss 2.30102, total acc 0.11350
+00:36:10.872 Training @ 8 epoch...
+00:36:12.779   Training iter 100, batch loss 2.3004, batch acc 0.1187
+00:36:14.066   Training iter 200, batch loss 2.3009, batch acc 0.1115
+00:36:15.535   Training iter 300, batch loss 2.3012, batch acc 0.1125
+00:36:16.921   Training iter 400, batch loss 2.3019, batch acc 0.1086
+00:36:19.370   Training iter 500, batch loss 2.3008, batch acc 0.1148
+00:36:20.969   Training iter 600, batch loss 2.3019, batch acc 0.1081
+00:36:20.972 Testing @ 8 epoch...
+00:36:21.214     Testing, total mean loss 2.30103, total acc 0.11350
+00:36:21.215 Training @ 9 epoch...
+00:36:23.653   Training iter 100, batch loss 2.3017, batch acc 0.1070
+00:36:25.420   Training iter 200, batch loss 2.3019, batch acc 0.1107
+00:36:27.033   Training iter 300, batch loss 2.3008, batch acc 0.1157
+00:36:28.663   Training iter 400, batch loss 2.3004, batch acc 0.1128
+00:36:30.358   Training iter 500, batch loss 2.3008, batch acc 0.1166
+00:36:31.912   Training iter 600, batch loss 2.3015, batch acc 0.1114
+00:36:31.918 Testing @ 9 epoch...
+00:36:32.154     Testing, total mean loss 2.30102, total acc 0.11350
+00:36:32.154 Training @ 10 epoch...
+00:36:34.321   Training iter 100, batch loss 2.3012, batch acc 0.1114
+00:36:36.058   Training iter 200, batch loss 2.3011, batch acc 0.1099
+00:36:37.811   Training iter 300, batch loss 2.3020, batch acc 0.1106
+00:36:39.623   Training iter 400, batch loss 2.3007, batch acc 0.1155
+00:36:41.316   Training iter 500, batch loss 2.3014, batch acc 0.1142
+00:36:43.336   Training iter 600, batch loss 2.3008, batch acc 0.1126
+00:36:43.339 Testing @ 10 epoch...
+00:36:43.605     Testing, total mean loss 2.30102, total acc 0.11350
+00:36:43.606 Training @ 11 epoch...
+00:36:45.572   Training iter 100, batch loss 2.3008, batch acc 0.1105
+00:36:47.340   Training iter 200, batch loss 2.3005, batch acc 0.1148
+00:36:49.115   Training iter 300, batch loss 2.3019, batch acc 0.1103
+00:36:51.079   Training iter 400, batch loss 2.3015, batch acc 0.1126
+00:36:53.125   Training iter 500, batch loss 2.3009, batch acc 0.1131
+00:36:55.156   Training iter 600, batch loss 2.3016, batch acc 0.1129
+00:36:55.158 Testing @ 11 epoch...
+00:36:55.395     Testing, total mean loss 2.30101, total acc 0.11350
+00:36:55.396 Training @ 12 epoch...
+00:36:57.041   Training iter 100, batch loss 2.3009, batch acc 0.1138
+00:36:58.655   Training iter 200, batch loss 2.3011, batch acc 0.1138
+00:37:00.056   Training iter 300, batch loss 2.3016, batch acc 0.1134
+00:37:01.311   Training iter 400, batch loss 2.3015, batch acc 0.1104
+00:37:02.450   Training iter 500, batch loss 2.3007, batch acc 0.1141
+00:37:03.832   Training iter 600, batch loss 2.3014, batch acc 0.1087
+00:37:03.834 Testing @ 12 epoch...
+00:37:04.048     Testing, total mean loss 2.30103, total acc 0.11350
+00:37:04.049 Training @ 13 epoch...
+00:37:05.872   Training iter 100, batch loss 2.3001, batch acc 0.1168
+00:37:07.818   Training iter 200, batch loss 2.3009, batch acc 0.1129
+00:37:09.579   Training iter 300, batch loss 2.3017, batch acc 0.1123
+00:37:10.997   Training iter 400, batch loss 2.3014, batch acc 0.1101
+00:37:12.501   Training iter 500, batch loss 2.3010, batch acc 0.1135
+00:37:13.720   Training iter 600, batch loss 2.3021, batch acc 0.1086
+00:37:13.722 Testing @ 13 epoch...
+00:37:13.944     Testing, total mean loss 2.30103, total acc 0.11350
+00:37:13.944 Training @ 14 epoch...
+00:37:16.108   Training iter 100, batch loss 2.3017, batch acc 0.1083
+00:37:17.443   Training iter 200, batch loss 2.3014, batch acc 0.1127
+00:37:19.122   Training iter 300, batch loss 2.3006, batch acc 0.1124
+00:37:20.681   Training iter 400, batch loss 2.3013, batch acc 0.1129
+00:37:22.741   Training iter 500, batch loss 2.3013, batch acc 0.1117
+00:37:24.271   Training iter 600, batch loss 2.3008, batch acc 0.1162
+00:37:24.273 Testing @ 14 epoch...
+00:37:24.507     Testing, total mean loss 2.30102, total acc 0.11350
+00:37:24.509 Training @ 15 epoch...
+00:37:26.239   Training iter 100, batch loss 2.3015, batch acc 0.1102
+00:37:27.955   Training iter 200, batch loss 2.3021, batch acc 0.1151
+00:37:29.986   Training iter 300, batch loss 2.3009, batch acc 0.1123
+00:37:32.281   Training iter 400, batch loss 2.3015, batch acc 0.1114
+00:37:34.178   Training iter 500, batch loss 2.3003, batch acc 0.1139
+00:37:35.869   Training iter 600, batch loss 2.3009, batch acc 0.1113
+00:37:35.871 Testing @ 15 epoch...
+00:37:36.125     Testing, total mean loss 2.30102, total acc 0.11350
+00:37:36.126 Training @ 16 epoch...
+00:37:37.651   Training iter 100, batch loss 2.3004, batch acc 0.1138
+00:37:39.136   Training iter 200, batch loss 2.3014, batch acc 0.1132
+00:37:40.781   Training iter 300, batch loss 2.3016, batch acc 0.1125
+00:37:42.661   Training iter 400, batch loss 2.3012, batch acc 0.1081
+00:37:44.350   Training iter 500, batch loss 2.3017, batch acc 0.1117
+00:37:46.026   Training iter 600, batch loss 2.3009, batch acc 0.1149
+00:37:46.032 Testing @ 16 epoch...
+00:37:46.248     Testing, total mean loss 2.30102, total acc 0.11350
+00:37:46.249 Training @ 17 epoch...
+00:37:48.087   Training iter 100, batch loss 2.3008, batch acc 0.1181
+00:37:50.117   Training iter 200, batch loss 2.3014, batch acc 0.1120
+00:37:51.818   Training iter 300, batch loss 2.3014, batch acc 0.1078
+00:37:53.535   Training iter 400, batch loss 2.3009, batch acc 0.1119
+00:37:55.656   Training iter 500, batch loss 2.3018, batch acc 0.1088
+00:37:57.571   Training iter 600, batch loss 2.3008, batch acc 0.1156
+00:37:57.573 Testing @ 17 epoch...
+00:37:57.818     Testing, total mean loss 2.30101, total acc 0.11350
+00:37:57.818 Training @ 18 epoch...
+00:37:59.772   Training iter 100, batch loss 2.3017, batch acc 0.1066
+00:38:01.715   Training iter 200, batch loss 2.3017, batch acc 0.1138
+00:38:03.480   Training iter 300, batch loss 2.3018, batch acc 0.1104
+00:38:05.189   Training iter 400, batch loss 2.3000, batch acc 0.1141
+00:38:06.835   Training iter 500, batch loss 2.3012, batch acc 0.1134
+00:38:08.299   Training iter 600, batch loss 2.3008, batch acc 0.1159
+00:38:08.302 Testing @ 18 epoch...
+00:38:08.640     Testing, total mean loss 2.30101, total acc 0.11350
+00:38:08.642 Training @ 19 epoch...
+00:38:11.075   Training iter 100, batch loss 2.3018, batch acc 0.1087
+00:38:13.222   Training iter 200, batch loss 2.3013, batch acc 0.1143
+00:38:15.048   Training iter 300, batch loss 2.3016, batch acc 0.1107
+00:38:16.453   Training iter 400, batch loss 2.3006, batch acc 0.1135
+00:38:17.674   Training iter 500, batch loss 2.3013, batch acc 0.1117
+00:38:18.754   Training iter 600, batch loss 2.3006, batch acc 0.1153
+00:38:18.757 Testing @ 19 epoch...
+00:38:18.985     Testing, total mean loss 2.30102, total acc 0.11350
+00:38:18.986 Training @ 20 epoch...
+00:38:21.226   Training iter 100, batch loss 2.3012, batch acc 0.1155
+00:38:23.071   Training iter 200, batch loss 2.3018, batch acc 0.1114
+00:38:24.899   Training iter 300, batch loss 2.3008, batch acc 0.1114
+00:38:26.420   Training iter 400, batch loss 2.3011, batch acc 0.1111
+00:38:28.186   Training iter 500, batch loss 2.3017, batch acc 0.1099
+00:38:29.685   Training iter 600, batch loss 2.3005, batch acc 0.1149
+00:38:29.690 Testing @ 20 epoch...
+00:38:29.912     Testing, total mean loss 2.30101, total acc 0.11350
+00:38:29.913 Training @ 21 epoch...
+00:38:32.037   Training iter 100, batch loss 2.3015, batch acc 0.1098
+00:38:34.510   Training iter 200, batch loss 2.3012, batch acc 0.1135
+00:38:37.070   Training iter 300, batch loss 2.3009, batch acc 0.1127
+00:38:38.961   Training iter 400, batch loss 2.3012, batch acc 0.1115
+00:38:40.654   Training iter 500, batch loss 2.3014, batch acc 0.1156
+00:38:42.426   Training iter 600, batch loss 2.3010, batch acc 0.1111
+00:38:42.436 Testing @ 21 epoch...
+00:38:42.676     Testing, total mean loss 2.30101, total acc 0.11350
+00:38:42.677 Training @ 22 epoch...
+00:38:44.668   Training iter 100, batch loss 2.3008, batch acc 0.1137
+00:38:46.857   Training iter 200, batch loss 2.3020, batch acc 0.1112
+00:38:48.973   Training iter 300, batch loss 2.3014, batch acc 0.1093
+00:38:50.913   Training iter 400, batch loss 2.3011, batch acc 0.1143
+00:38:52.627   Training iter 500, batch loss 2.3007, batch acc 0.1128
+00:38:54.398   Training iter 600, batch loss 2.3012, batch acc 0.1129
+00:38:54.400 Testing @ 22 epoch...
+00:38:54.700     Testing, total mean loss 2.30101, total acc 0.11350
+00:38:54.700 Training @ 23 epoch...
+00:38:56.878   Training iter 100, batch loss 2.3015, batch acc 0.1126
+00:38:58.459   Training iter 200, batch loss 2.3017, batch acc 0.1120
+00:39:00.071   Training iter 300, batch loss 2.3005, batch acc 0.1142
+00:39:01.764   Training iter 400, batch loss 2.3013, batch acc 0.1105
+00:39:03.470   Training iter 500, batch loss 2.3010, batch acc 0.1144
+00:39:05.210   Training iter 600, batch loss 2.3011, batch acc 0.1105
+00:39:05.213 Testing @ 23 epoch...
+00:39:05.460     Testing, total mean loss 2.30102, total acc 0.11350
+00:39:05.460 Training @ 24 epoch...
+00:39:07.627   Training iter 100, batch loss 2.3011, batch acc 0.1145
+00:39:09.776   Training iter 200, batch loss 2.3017, batch acc 0.1093
+00:39:11.883   Training iter 300, batch loss 2.3006, batch acc 0.1122
+00:39:14.231   Training iter 400, batch loss 2.3019, batch acc 0.1116
+00:39:16.020   Training iter 500, batch loss 2.3012, batch acc 0.1105
+00:39:17.973   Training iter 600, batch loss 2.3007, batch acc 0.1161
+00:39:17.975 Testing @ 24 epoch...
+00:39:18.232     Testing, total mean loss 2.30102, total acc 0.11350
+00:39:18.233 Training @ 25 epoch...
+00:39:20.427   Training iter 100, batch loss 2.3014, batch acc 0.1089
+00:39:23.092   Training iter 200, batch loss 2.3011, batch acc 0.1125
+00:39:24.815   Training iter 300, batch loss 2.3016, batch acc 0.1109
+00:39:26.915   Training iter 400, batch loss 2.3009, batch acc 0.1153
+00:39:28.763   Training iter 500, batch loss 2.3011, batch acc 0.1178
+00:39:29.998   Training iter 600, batch loss 2.3011, batch acc 0.1088
+00:39:30.000 Testing @ 25 epoch...
+00:39:30.247     Testing, total mean loss 2.30102, total acc 0.11350
+00:39:30.248 Training @ 26 epoch...
+00:39:32.127   Training iter 100, batch loss 2.3010, batch acc 0.1127
+00:39:33.758   Training iter 200, batch loss 2.3007, batch acc 0.1159
+00:39:35.107   Training iter 300, batch loss 2.3014, batch acc 0.1142
+00:39:36.585   Training iter 400, batch loss 2.3010, batch acc 0.1114
+00:39:38.461   Training iter 500, batch loss 2.3022, batch acc 0.1048
+00:39:40.161   Training iter 600, batch loss 2.3009, batch acc 0.1152
+00:39:40.167 Testing @ 26 epoch...
+00:39:40.434     Testing, total mean loss 2.30102, total acc 0.11350
+00:39:40.434 Training @ 27 epoch...
+00:39:42.003   Training iter 100, batch loss 2.3016, batch acc 0.1099
+00:39:43.463   Training iter 200, batch loss 2.3013, batch acc 0.1097
+00:39:45.132   Training iter 300, batch loss 2.3012, batch acc 0.1144
+00:39:46.519   Training iter 400, batch loss 2.3009, batch acc 0.1123
+00:39:47.978   Training iter 500, batch loss 2.3012, batch acc 0.1139
+00:39:50.258   Training iter 600, batch loss 2.3009, batch acc 0.1140
+00:39:50.263 Testing @ 27 epoch...
+00:39:50.518     Testing, total mean loss 2.30101, total acc 0.11350
+00:39:50.519 Training @ 28 epoch...
+00:39:53.146   Training iter 100, batch loss 2.3011, batch acc 0.1150
+00:39:55.010   Training iter 200, batch loss 2.3013, batch acc 0.1106
+00:39:56.781   Training iter 300, batch loss 2.3013, batch acc 0.1122
+00:39:58.727   Training iter 400, batch loss 2.3010, batch acc 0.1125
+00:40:00.922   Training iter 500, batch loss 2.3009, batch acc 0.1158
+00:40:03.278   Training iter 600, batch loss 2.3016, batch acc 0.1081
+00:40:03.283 Testing @ 28 epoch...
+00:40:03.536     Testing, total mean loss 2.30102, total acc 0.11350
+00:40:03.536 Training @ 29 epoch...
+00:40:05.542   Training iter 100, batch loss 2.3009, batch acc 0.1125
+00:40:07.606   Training iter 200, batch loss 2.3011, batch acc 0.1128
+00:40:09.303   Training iter 300, batch loss 2.3006, batch acc 0.1190
+00:40:11.206   Training iter 400, batch loss 2.3027, batch acc 0.1065
+00:40:13.044   Training iter 500, batch loss 2.3003, batch acc 0.1165
+00:40:14.773   Training iter 600, batch loss 2.3017, batch acc 0.1069
+00:40:14.775 Testing @ 29 epoch...
+00:40:15.088     Testing, total mean loss 2.30102, total acc 0.11350
+00:40:15.089 Training @ 30 epoch...
+00:40:17.268   Training iter 100, batch loss 2.3013, batch acc 0.1094
+00:40:18.741   Training iter 200, batch loss 2.3011, batch acc 0.1131
+00:40:20.340   Training iter 300, batch loss 2.3011, batch acc 0.1100
+00:40:21.869   Training iter 400, batch loss 2.3016, batch acc 0.1125
+00:40:23.838   Training iter 500, batch loss 2.3011, batch acc 0.1159
+00:40:25.487   Training iter 600, batch loss 2.3009, batch acc 0.1133
+00:40:25.495 Testing @ 30 epoch...
+00:40:25.736     Testing, total mean loss 2.30102, total acc 0.11350
+00:40:25.737 Training @ 31 epoch...
+00:40:27.201   Training iter 100, batch loss 2.3007, batch acc 0.1151
+00:40:28.478   Training iter 200, batch loss 2.3015, batch acc 0.1130
+00:40:29.890   Training iter 300, batch loss 2.3015, batch acc 0.1123
+00:40:31.150   Training iter 400, batch loss 2.3013, batch acc 0.1083
+00:40:32.570   Training iter 500, batch loss 2.3008, batch acc 0.1129
+00:40:34.429   Training iter 600, batch loss 2.3013, batch acc 0.1126
+00:40:34.432 Testing @ 31 epoch...
+00:40:34.786     Testing, total mean loss 2.30102, total acc 0.11350
+00:40:34.787 Training @ 32 epoch...
+00:40:37.657   Training iter 100, batch loss 2.3015, batch acc 0.1111
+00:40:39.557   Training iter 200, batch loss 2.3007, batch acc 0.1152
+00:40:41.181   Training iter 300, batch loss 2.3011, batch acc 0.1093
+00:40:42.656   Training iter 400, batch loss 2.3000, batch acc 0.1203
+00:40:44.156   Training iter 500, batch loss 2.3022, batch acc 0.1100
+00:40:45.610   Training iter 600, batch loss 2.3016, batch acc 0.1083
+00:40:45.613 Testing @ 32 epoch...
+00:40:45.843     Testing, total mean loss 2.30103, total acc 0.11350
+00:40:45.844 Training @ 33 epoch...
+00:40:48.041   Training iter 100, batch loss 2.3009, batch acc 0.1166
+00:40:49.745   Training iter 200, batch loss 2.3018, batch acc 0.1084
+00:40:51.320   Training iter 300, batch loss 2.3011, batch acc 0.1115
+00:40:52.874   Training iter 400, batch loss 2.3010, batch acc 0.1141
+00:40:54.971   Training iter 500, batch loss 2.3015, batch acc 0.1118
+00:40:56.361   Training iter 600, batch loss 2.3008, batch acc 0.1118
+00:40:56.363 Testing @ 33 epoch...
+00:40:56.607     Testing, total mean loss 2.30103, total acc 0.11350
+00:40:56.607 Training @ 34 epoch...
+00:40:58.843   Training iter 100, batch loss 2.3012, batch acc 0.1136
+00:41:01.102   Training iter 200, batch loss 2.3007, batch acc 0.1180
+00:41:03.177   Training iter 300, batch loss 2.3017, batch acc 0.1075
+00:41:05.158   Training iter 400, batch loss 2.3018, batch acc 0.1086
+00:41:06.498   Training iter 500, batch loss 2.3008, batch acc 0.1142
+00:41:07.904   Training iter 600, batch loss 2.3010, batch acc 0.1123
+00:41:07.906 Testing @ 34 epoch...
+00:41:08.168     Testing, total mean loss 2.30102, total acc 0.11350
+00:41:08.169 Training @ 35 epoch...
+00:41:10.452   Training iter 100, batch loss 2.3010, batch acc 0.1121
+00:41:12.787   Training iter 200, batch loss 2.3006, batch acc 0.1160
+00:41:15.178   Training iter 300, batch loss 2.3020, batch acc 0.1090
+00:41:17.196   Training iter 400, batch loss 2.3008, batch acc 0.1144
+00:41:18.618   Training iter 500, batch loss 2.3016, batch acc 0.1108
+00:41:19.956   Training iter 600, batch loss 2.3011, batch acc 0.1119
+00:41:19.958 Testing @ 35 epoch...
+00:41:20.209     Testing, total mean loss 2.30102, total acc 0.11350
+00:41:20.209 Training @ 36 epoch...
+00:41:21.887   Training iter 100, batch loss 2.3012, batch acc 0.1138
+00:41:23.548   Training iter 200, batch loss 2.3013, batch acc 0.1110
+00:41:24.554   Training iter 300, batch loss 2.3016, batch acc 0.1092
+00:41:26.245   Training iter 400, batch loss 2.3016, batch acc 0.1106
+00:41:27.681   Training iter 500, batch loss 2.3005, batch acc 0.1137
+00:41:29.123   Training iter 600, batch loss 2.3009, batch acc 0.1159
+00:41:29.125 Testing @ 36 epoch...
+00:41:29.480     Testing, total mean loss 2.30101, total acc 0.11350
+00:41:29.480 Training @ 37 epoch...
+00:41:31.738   Training iter 100, batch loss 2.3007, batch acc 0.1144
+00:41:33.268   Training iter 200, batch loss 2.3009, batch acc 0.1140
+00:41:34.846   Training iter 300, batch loss 2.3013, batch acc 0.1146
+00:41:36.563   Training iter 400, batch loss 2.3019, batch acc 0.1072
+00:41:38.560   Training iter 500, batch loss 2.3014, batch acc 0.1130
+00:41:40.340   Training iter 600, batch loss 2.3010, batch acc 0.1110
+00:41:40.343 Testing @ 37 epoch...
+00:41:40.632     Testing, total mean loss 2.30102, total acc 0.11350
+00:41:40.633 Training @ 38 epoch...
+00:41:43.264   Training iter 100, batch loss 2.3008, batch acc 0.1166
+00:41:45.544   Training iter 200, batch loss 2.3016, batch acc 0.1100
+00:41:47.215   Training iter 300, batch loss 2.3016, batch acc 0.1100
+00:41:49.124   Training iter 400, batch loss 2.3017, batch acc 0.1109
+00:41:51.218   Training iter 500, batch loss 2.3007, batch acc 0.1125
+00:41:53.413   Training iter 600, batch loss 2.3007, batch acc 0.1142
+00:41:53.415 Testing @ 38 epoch...
+00:41:53.617     Testing, total mean loss 2.30102, total acc 0.11350
+00:41:53.617 Training @ 39 epoch...
+00:41:55.642   Training iter 100, batch loss 2.3013, batch acc 0.1098
+00:41:57.417   Training iter 200, batch loss 2.3014, batch acc 0.1135
+00:41:58.866   Training iter 300, batch loss 2.3015, batch acc 0.1101
+00:42:00.617   Training iter 400, batch loss 2.3015, batch acc 0.1105
+00:42:02.120   Training iter 500, batch loss 2.3011, batch acc 0.1131
+00:42:03.688   Training iter 600, batch loss 2.3005, batch acc 0.1172
+00:42:03.693 Testing @ 39 epoch...
+00:42:03.930     Testing, total mean loss 2.30102, total acc 0.11350
+00:42:03.931 Training @ 40 epoch...
+00:42:05.563   Training iter 100, batch loss 2.3012, batch acc 0.1095
+00:42:07.396   Training iter 200, batch loss 2.3006, batch acc 0.1184
+00:42:09.383   Training iter 300, batch loss 2.3022, batch acc 0.1079
+00:42:10.979   Training iter 400, batch loss 2.3020, batch acc 0.1080
+00:42:12.800   Training iter 500, batch loss 2.3006, batch acc 0.1127
+00:42:14.474   Training iter 600, batch loss 2.3005, batch acc 0.1177
+00:42:14.477 Testing @ 40 epoch...
+00:42:14.711     Testing, total mean loss 2.30102, total acc 0.11350
+00:42:14.712 Training @ 41 epoch...
+00:42:16.815   Training iter 100, batch loss 2.3011, batch acc 0.1109
+00:42:18.700   Training iter 200, batch loss 2.3009, batch acc 0.1119
+00:42:20.645   Training iter 300, batch loss 2.3014, batch acc 0.1138
+00:42:22.272   Training iter 400, batch loss 2.3012, batch acc 0.1132
+00:42:23.733   Training iter 500, batch loss 2.3011, batch acc 0.1135
+00:42:25.459   Training iter 600, batch loss 2.3015, batch acc 0.1109
+00:42:25.463 Testing @ 41 epoch...
+00:42:25.698     Testing, total mean loss 2.30102, total acc 0.11350
+00:42:25.699 Training @ 42 epoch...
+00:42:27.732   Training iter 100, batch loss 2.3007, batch acc 0.1146
+00:42:29.521   Training iter 200, batch loss 2.3009, batch acc 0.1127
+00:42:31.097   Training iter 300, batch loss 2.3019, batch acc 0.1056
+00:42:32.249   Training iter 400, batch loss 2.3008, batch acc 0.1169
+00:42:33.328   Training iter 500, batch loss 2.3016, batch acc 0.1109
+00:42:34.967   Training iter 600, batch loss 2.3012, batch acc 0.1135
+00:42:34.970 Testing @ 42 epoch...
+00:42:35.214     Testing, total mean loss 2.30102, total acc 0.11350
+00:42:35.214 Training @ 43 epoch...
+00:42:36.816   Training iter 100, batch loss 2.3016, batch acc 0.1101
+00:42:38.247   Training iter 200, batch loss 2.3008, batch acc 0.1118
+00:42:39.976   Training iter 300, batch loss 2.3012, batch acc 0.1113
+00:42:41.161   Training iter 400, batch loss 2.3016, batch acc 0.1128
+00:42:42.224   Training iter 500, batch loss 2.3008, batch acc 0.1139
+00:42:43.299   Training iter 600, batch loss 2.3012, batch acc 0.1143
+00:42:43.301 Testing @ 43 epoch...
+00:42:43.532     Testing, total mean loss 2.30101, total acc 0.11350
+00:42:43.532 Training @ 44 epoch...
+00:42:44.666   Training iter 100, batch loss 2.3010, batch acc 0.1126
+00:42:45.673   Training iter 200, batch loss 2.3012, batch acc 0.1125
+00:42:46.797   Training iter 300, batch loss 2.3012, batch acc 0.1084
+00:42:48.105   Training iter 400, batch loss 2.3011, batch acc 0.1158
+00:42:49.258   Training iter 500, batch loss 2.3012, batch acc 0.1131
+00:42:50.491   Training iter 600, batch loss 2.3014, batch acc 0.1118
+00:42:50.495 Testing @ 44 epoch...
+00:42:50.698     Testing, total mean loss 2.30102, total acc 0.11350
+00:42:50.698 Training @ 45 epoch...
+00:42:52.311   Training iter 100, batch loss 2.3007, batch acc 0.1163
+00:42:53.508   Training iter 200, batch loss 2.3006, batch acc 0.1164
+00:42:54.876   Training iter 300, batch loss 2.3010, batch acc 0.1116
+00:42:56.384   Training iter 400, batch loss 2.3013, batch acc 0.1120
+00:42:58.003   Training iter 500, batch loss 2.3012, batch acc 0.1118
+00:42:59.392   Training iter 600, batch loss 2.3023, batch acc 0.1061
+00:42:59.395 Testing @ 45 epoch...
+00:42:59.622     Testing, total mean loss 2.30102, total acc 0.11350
+00:42:59.622 Training @ 46 epoch...
+00:43:00.973   Training iter 100, batch loss 2.3009, batch acc 0.1109
+00:43:02.533   Training iter 200, batch loss 2.3009, batch acc 0.1139
+00:43:04.250   Training iter 300, batch loss 2.3015, batch acc 0.1068
+00:43:05.748   Training iter 400, batch loss 2.3012, batch acc 0.1151
+00:43:06.912   Training iter 500, batch loss 2.3018, batch acc 0.1110
+00:43:08.109   Training iter 600, batch loss 2.3008, batch acc 0.1165
+00:43:08.114 Testing @ 46 epoch...
+00:43:08.327     Testing, total mean loss 2.30101, total acc 0.11350
+00:43:08.327 Training @ 47 epoch...
+00:43:09.762   Training iter 100, batch loss 2.3020, batch acc 0.1080
+00:43:11.437   Training iter 200, batch loss 2.3014, batch acc 0.1115
+00:43:12.679   Training iter 300, batch loss 2.3007, batch acc 0.1159
+00:43:13.789   Training iter 400, batch loss 2.3011, batch acc 0.1153
+00:43:15.020   Training iter 500, batch loss 2.3009, batch acc 0.1122
+00:43:16.193   Training iter 600, batch loss 2.3012, batch acc 0.1113
+00:43:16.197 Testing @ 47 epoch...
+00:43:16.459     Testing, total mean loss 2.30102, total acc 0.11350
+00:43:16.459 Training @ 48 epoch...
+00:43:18.004   Training iter 100, batch loss 2.3011, batch acc 0.1099
+00:43:19.192   Training iter 200, batch loss 2.3005, batch acc 0.1150
+00:43:20.357   Training iter 300, batch loss 2.3013, batch acc 0.1127
+00:43:21.613   Training iter 400, batch loss 2.3008, batch acc 0.1151
+00:43:22.921   Training iter 500, batch loss 2.3017, batch acc 0.1103
+00:43:24.086   Training iter 600, batch loss 2.3018, batch acc 0.1112
+00:43:24.089 Testing @ 48 epoch...
+00:43:24.336     Testing, total mean loss 2.30102, total acc 0.11350
+00:43:24.337 Training @ 49 epoch...
+00:43:25.815   Training iter 100, batch loss 2.3008, batch acc 0.1148
+00:43:27.177   Training iter 200, batch loss 2.3011, batch acc 0.1139
+00:43:28.394   Training iter 300, batch loss 2.3012, batch acc 0.1125
+00:43:29.844   Training iter 400, batch loss 2.3014, batch acc 0.1098
+00:43:31.330   Training iter 500, batch loss 2.3020, batch acc 0.1093
+00:43:32.566   Training iter 600, batch loss 2.3007, batch acc 0.1139
+00:43:32.569 Testing @ 49 epoch...
+00:43:32.787     Testing, total mean loss 2.30101, total acc 0.11350
+00:43:32.788 Training @ 50 epoch...
+00:43:34.488   Training iter 100, batch loss 2.3016, batch acc 0.1093
+00:43:35.653   Training iter 200, batch loss 2.3020, batch acc 0.1069
+00:43:37.066   Training iter 300, batch loss 2.3008, batch acc 0.1134
+00:43:38.679   Training iter 400, batch loss 2.3009, batch acc 0.1160
+00:43:40.154   Training iter 500, batch loss 2.3016, batch acc 0.1115
+00:43:41.523   Training iter 600, batch loss 2.3003, batch acc 0.1171
+00:43:41.526 Testing @ 50 epoch...
+00:43:41.736     Testing, total mean loss 2.30102, total acc 0.11350
+00:43:41.737 Training @ 51 epoch...
+00:43:43.043   Training iter 100, batch loss 2.3006, batch acc 0.1161
+00:43:44.277   Training iter 200, batch loss 2.3013, batch acc 0.1129
+00:43:45.452   Training iter 300, batch loss 2.3007, batch acc 0.1151
+00:43:46.521   Training iter 400, batch loss 2.3009, batch acc 0.1150
+00:43:47.620   Training iter 500, batch loss 2.3025, batch acc 0.1027
+00:43:48.790   Training iter 600, batch loss 2.3013, batch acc 0.1124
+00:43:48.794 Testing @ 51 epoch...
+00:43:49.006     Testing, total mean loss 2.30101, total acc 0.11350
+00:43:49.007 Training @ 52 epoch...
+00:43:50.590   Training iter 100, batch loss 2.3018, batch acc 0.1117
+00:43:51.827   Training iter 200, batch loss 2.3013, batch acc 0.1096
+00:43:53.003   Training iter 300, batch loss 2.3007, batch acc 0.1162
+00:43:54.163   Training iter 400, batch loss 2.3009, batch acc 0.1120
+00:43:55.252   Training iter 500, batch loss 2.3016, batch acc 0.1091
+00:43:56.272   Training iter 600, batch loss 2.3009, batch acc 0.1156
+00:43:56.276 Testing @ 52 epoch...
+00:43:56.485     Testing, total mean loss 2.30102, total acc 0.11350
+00:43:56.486 Training @ 53 epoch...
+00:43:58.256   Training iter 100, batch loss 2.3013, batch acc 0.1115
+00:43:59.661   Training iter 200, batch loss 2.3011, batch acc 0.1153
+00:44:01.156   Training iter 300, batch loss 2.3015, batch acc 0.1086
+00:44:02.541   Training iter 400, batch loss 2.3014, batch acc 0.1127
+00:44:04.296   Training iter 500, batch loss 2.3007, batch acc 0.1140
+00:44:06.317   Training iter 600, batch loss 2.3012, batch acc 0.1121
+00:44:06.319 Testing @ 53 epoch...
+00:44:06.539     Testing, total mean loss 2.30102, total acc 0.11350
+00:44:06.540 Training @ 54 epoch...
+00:44:08.958   Training iter 100, batch loss 2.3018, batch acc 0.1097
+00:44:10.829   Training iter 200, batch loss 2.3015, batch acc 0.1099
+00:44:13.107   Training iter 300, batch loss 2.3010, batch acc 0.1128
+00:44:16.189   Training iter 400, batch loss 2.3009, batch acc 0.1152
+00:44:19.072   Training iter 500, batch loss 2.3012, batch acc 0.1091
+00:44:20.622   Training iter 600, batch loss 2.3008, batch acc 0.1175
+00:44:20.625 Testing @ 54 epoch...
+00:44:20.847     Testing, total mean loss 2.30102, total acc 0.11350
+00:44:20.848 Training @ 55 epoch...
+00:44:22.742   Training iter 100, batch loss 2.3014, batch acc 0.1124
+00:44:24.464   Training iter 200, batch loss 2.3022, batch acc 0.1089
+00:44:26.219   Training iter 300, batch loss 2.3017, batch acc 0.1094
+00:44:27.828   Training iter 400, batch loss 2.3012, batch acc 0.1121
+00:44:29.794   Training iter 500, batch loss 2.2999, batch acc 0.1173
+00:44:31.071   Training iter 600, batch loss 2.3009, batch acc 0.1141
+00:44:31.075 Testing @ 55 epoch...
+00:44:31.304     Testing, total mean loss 2.30103, total acc 0.11350
+00:44:31.305 Training @ 56 epoch...
+00:44:33.371   Training iter 100, batch loss 2.3009, batch acc 0.1138
+00:44:35.149   Training iter 200, batch loss 2.3007, batch acc 0.1137
+00:44:36.680   Training iter 300, batch loss 2.3015, batch acc 0.1095
+00:44:38.145   Training iter 400, batch loss 2.3016, batch acc 0.1086
+00:44:39.612   Training iter 500, batch loss 2.3013, batch acc 0.1122
+00:44:41.302   Training iter 600, batch loss 2.3012, batch acc 0.1164
+00:44:41.304 Testing @ 56 epoch...
+00:44:41.572     Testing, total mean loss 2.30102, total acc 0.11350
+00:44:41.573 Training @ 57 epoch...
+00:44:43.574   Training iter 100, batch loss 2.3011, batch acc 0.1095
+00:44:45.503   Training iter 200, batch loss 2.3014, batch acc 0.1141
+00:44:47.759   Training iter 300, batch loss 2.3007, batch acc 0.1149
+00:44:50.064   Training iter 400, batch loss 2.3011, batch acc 0.1152
+00:44:51.987   Training iter 500, batch loss 2.3012, batch acc 0.1068
+00:44:54.495   Training iter 600, batch loss 2.3017, batch acc 0.1137
+00:44:54.498 Testing @ 57 epoch...
+00:44:54.768     Testing, total mean loss 2.30102, total acc 0.11350
+00:44:54.769 Training @ 58 epoch...
+00:44:56.773   Training iter 100, batch loss 2.3013, batch acc 0.1134
+00:44:58.368   Training iter 200, batch loss 2.3009, batch acc 0.1121
+00:44:59.860   Training iter 300, batch loss 2.3013, batch acc 0.1108
+00:45:01.669   Training iter 400, batch loss 2.3018, batch acc 0.1130
+00:45:03.433   Training iter 500, batch loss 2.3005, batch acc 0.1139
+00:45:05.147   Training iter 600, batch loss 2.3015, batch acc 0.1110
+00:45:05.149 Testing @ 58 epoch...
+00:45:05.392     Testing, total mean loss 2.30102, total acc 0.11350
+00:45:05.393 Training @ 59 epoch...
+00:45:07.624   Training iter 100, batch loss 2.3014, batch acc 0.1109
+00:45:09.422   Training iter 200, batch loss 2.3009, batch acc 0.1136
+00:45:11.090   Training iter 300, batch loss 2.3006, batch acc 0.1175
+00:45:12.627   Training iter 400, batch loss 2.3018, batch acc 0.1086
+00:45:14.245   Training iter 500, batch loss 2.3015, batch acc 0.1101
+00:45:15.697   Training iter 600, batch loss 2.3010, batch acc 0.1135
+00:45:15.699 Testing @ 59 epoch...
+00:45:15.927     Testing, total mean loss 2.30101, total acc 0.11350
+00:45:15.928 Training @ 60 epoch...
+00:45:17.598   Training iter 100, batch loss 2.3002, batch acc 0.1168
+00:45:19.142   Training iter 200, batch loss 2.3009, batch acc 0.1140
+00:45:21.024   Training iter 300, batch loss 2.3012, batch acc 0.1149
+00:45:22.771   Training iter 400, batch loss 2.3014, batch acc 0.1102
+00:45:24.741   Training iter 500, batch loss 2.3017, batch acc 0.1087
+00:45:27.171   Training iter 600, batch loss 2.3017, batch acc 0.1096
+00:45:27.173 Testing @ 60 epoch...
+00:45:27.460     Testing, total mean loss 2.30102, total acc 0.11350
+00:45:27.461 Training @ 61 epoch...
+00:45:29.859   Training iter 100, batch loss 2.3008, batch acc 0.1128
+00:45:31.556   Training iter 200, batch loss 2.3018, batch acc 0.1070
+00:45:33.565   Training iter 300, batch loss 2.3018, batch acc 0.1080
+00:45:35.806   Training iter 400, batch loss 2.3011, batch acc 0.1145
+00:45:37.277   Training iter 500, batch loss 2.3008, batch acc 0.1162
+00:45:38.704   Training iter 600, batch loss 2.3008, batch acc 0.1157
+00:45:38.709 Testing @ 61 epoch...
+00:45:38.960     Testing, total mean loss 2.30102, total acc 0.11350
+00:45:38.961 Training @ 62 epoch...
+00:45:41.308   Training iter 100, batch loss 2.3013, batch acc 0.1067
+00:45:43.468   Training iter 200, batch loss 2.3011, batch acc 0.1118
+00:45:45.161   Training iter 300, batch loss 2.3009, batch acc 0.1134
+00:45:46.766   Training iter 400, batch loss 2.2999, batch acc 0.1197
+00:45:48.184   Training iter 500, batch loss 2.3019, batch acc 0.1113
+00:45:49.914   Training iter 600, batch loss 2.3021, batch acc 0.1113
+00:45:49.916 Testing @ 62 epoch...
+00:45:50.241     Testing, total mean loss 2.30101, total acc 0.11350
+00:45:50.241 Training @ 63 epoch...
+00:45:52.332   Training iter 100, batch loss 2.3022, batch acc 0.1096
+00:45:54.419   Training iter 200, batch loss 2.3012, batch acc 0.1109
+00:45:56.570   Training iter 300, batch loss 2.3010, batch acc 0.1178
+00:45:58.699   Training iter 400, batch loss 2.3011, batch acc 0.1105
+00:46:01.169   Training iter 500, batch loss 2.3005, batch acc 0.1141
+00:46:02.645   Training iter 600, batch loss 2.3011, batch acc 0.1113
+00:46:02.648 Testing @ 63 epoch...
+00:46:02.879     Testing, total mean loss 2.30101, total acc 0.11350
+00:46:02.880 Training @ 64 epoch...
+00:46:05.315   Training iter 100, batch loss 2.3018, batch acc 0.1125
+00:46:07.378   Training iter 200, batch loss 2.3008, batch acc 0.1110
+00:46:09.819   Training iter 300, batch loss 2.3013, batch acc 0.1149
+00:46:12.006   Training iter 400, batch loss 2.3006, batch acc 0.1146
+00:46:13.859   Training iter 500, batch loss 2.3009, batch acc 0.1122
+00:46:15.561   Training iter 600, batch loss 2.3018, batch acc 0.1090
+00:46:15.565 Testing @ 64 epoch...
+00:46:15.802     Testing, total mean loss 2.30102, total acc 0.11350
+00:46:15.803 Training @ 65 epoch...
+00:46:17.631   Training iter 100, batch loss 2.3013, batch acc 0.1060
+00:46:19.448   Training iter 200, batch loss 2.3012, batch acc 0.1152
+00:46:21.430   Training iter 300, batch loss 2.3013, batch acc 0.1120
+00:46:22.742   Training iter 400, batch loss 2.3008, batch acc 0.1152
+00:46:24.067   Training iter 500, batch loss 2.3016, batch acc 0.1111
+00:46:25.367   Training iter 600, batch loss 2.3009, batch acc 0.1147
+00:46:25.369 Testing @ 65 epoch...
+00:46:25.599     Testing, total mean loss 2.30102, total acc 0.11350
+00:46:25.599 Training @ 66 epoch...
+00:46:27.646   Training iter 100, batch loss 2.3010, batch acc 0.1135
+00:46:29.257   Training iter 200, batch loss 2.3013, batch acc 0.1128
+00:46:30.822   Training iter 300, batch loss 2.3011, batch acc 0.1128
+00:46:32.819   Training iter 400, batch loss 2.3014, batch acc 0.1115
+00:46:34.822   Training iter 500, batch loss 2.3012, batch acc 0.1106
+00:46:36.531   Training iter 600, batch loss 2.3012, batch acc 0.1130
+00:46:36.534 Testing @ 66 epoch...
+00:46:36.775     Testing, total mean loss 2.30102, total acc 0.11350
+00:46:36.776 Training @ 67 epoch...
+00:46:39.085   Training iter 100, batch loss 2.3017, batch acc 0.1079
+00:46:40.552   Training iter 200, batch loss 2.3015, batch acc 0.1115
+00:46:41.945   Training iter 300, batch loss 2.3003, batch acc 0.1156
+00:46:44.211   Training iter 400, batch loss 2.3010, batch acc 0.1132
+00:46:46.554   Training iter 500, batch loss 2.3011, batch acc 0.1135
+00:46:48.904   Training iter 600, batch loss 2.3016, batch acc 0.1125
+00:46:48.906 Testing @ 67 epoch...
+00:46:49.172     Testing, total mean loss 2.30102, total acc 0.11350
+00:46:49.172 Training @ 68 epoch...
+00:46:51.277   Training iter 100, batch loss 2.3011, batch acc 0.1126
+00:46:52.894   Training iter 200, batch loss 2.3011, batch acc 0.1154
+00:46:54.553   Training iter 300, batch loss 2.3016, batch acc 0.1067
+00:46:56.325   Training iter 400, batch loss 2.3018, batch acc 0.1110
+00:46:57.806   Training iter 500, batch loss 2.3009, batch acc 0.1143
+00:46:59.367   Training iter 600, batch loss 2.3007, batch acc 0.1142
+00:46:59.370 Testing @ 68 epoch...
+00:46:59.602     Testing, total mean loss 2.30103, total acc 0.11350
+00:46:59.604 Training @ 69 epoch...
+00:47:01.288   Training iter 100, batch loss 2.3009, batch acc 0.1134
+00:47:03.249   Training iter 200, batch loss 2.3015, batch acc 0.1129
+00:47:05.187   Training iter 300, batch loss 2.3019, batch acc 0.1089
+00:47:06.821   Training iter 400, batch loss 2.3005, batch acc 0.1199
+00:47:08.144   Training iter 500, batch loss 2.3018, batch acc 0.1056
+00:47:09.960   Training iter 600, batch loss 2.3006, batch acc 0.1135
+00:47:09.963 Testing @ 69 epoch...
+00:47:10.195     Testing, total mean loss 2.30103, total acc 0.11350
+00:47:10.195 Training @ 70 epoch...
+00:47:11.677   Training iter 100, batch loss 2.3005, batch acc 0.1171
+00:47:13.016   Training iter 200, batch loss 2.3017, batch acc 0.1105
+00:47:14.847   Training iter 300, batch loss 2.3008, batch acc 0.1117
+00:47:16.363   Training iter 400, batch loss 2.3018, batch acc 0.1066
+00:47:17.677   Training iter 500, batch loss 2.3011, batch acc 0.1151
+00:47:19.265   Training iter 600, batch loss 2.3013, batch acc 0.1132
+00:47:19.269 Testing @ 70 epoch...
+00:47:19.530     Testing, total mean loss 2.30102, total acc 0.11350
+00:47:19.531 Training @ 71 epoch...
+00:47:22.198   Training iter 100, batch loss 2.3013, batch acc 0.1075
+00:47:24.049   Training iter 200, batch loss 2.3004, batch acc 0.1186
+00:47:26.268   Training iter 300, batch loss 2.3007, batch acc 0.1111
+00:47:27.951   Training iter 400, batch loss 2.3012, batch acc 0.1110
+00:47:29.600   Training iter 500, batch loss 2.3012, batch acc 0.1160
+00:47:30.945   Training iter 600, batch loss 2.3024, batch acc 0.1100
+00:47:30.950 Testing @ 71 epoch...
+00:47:31.211     Testing, total mean loss 2.30102, total acc 0.11350
+00:47:31.212 Training @ 72 epoch...
+00:47:32.653   Training iter 100, batch loss 2.3006, batch acc 0.1142
+00:47:34.351   Training iter 200, batch loss 2.3020, batch acc 0.1085
+00:47:35.735   Training iter 300, batch loss 2.3015, batch acc 0.1125
+00:47:37.226   Training iter 400, batch loss 2.3010, batch acc 0.1155
+00:47:39.230   Training iter 500, batch loss 2.3014, batch acc 0.1090
+00:47:40.963   Training iter 600, batch loss 2.3007, batch acc 0.1145
+00:47:40.966 Testing @ 72 epoch...
+00:47:41.259     Testing, total mean loss 2.30101, total acc 0.11350
+00:47:41.260 Training @ 73 epoch...
+00:47:43.432   Training iter 100, batch loss 2.3013, batch acc 0.1148
+00:47:45.251   Training iter 200, batch loss 2.3015, batch acc 0.1112
+00:47:46.959   Training iter 300, batch loss 2.3006, batch acc 0.1155
+00:47:48.856   Training iter 400, batch loss 2.3015, batch acc 0.1107
+00:47:50.412   Training iter 500, batch loss 2.3009, batch acc 0.1154
+00:47:52.068   Training iter 600, batch loss 2.3013, batch acc 0.1066
+00:47:52.070 Testing @ 73 epoch...
+00:47:52.319     Testing, total mean loss 2.30101, total acc 0.11350
+00:47:52.319 Training @ 74 epoch...
+00:47:54.285   Training iter 100, batch loss 2.3013, batch acc 0.1146
+00:47:56.301   Training iter 200, batch loss 2.3012, batch acc 0.1077
+00:47:58.244   Training iter 300, batch loss 2.3018, batch acc 0.1096
+00:48:00.275   Training iter 400, batch loss 2.3016, batch acc 0.1136
+00:48:02.274   Training iter 500, batch loss 2.2999, batch acc 0.1153
+00:48:03.855   Training iter 600, batch loss 2.3014, batch acc 0.1134
+00:48:03.860 Testing @ 74 epoch...
+00:48:04.067     Testing, total mean loss 2.30101, total acc 0.11350
+00:48:04.067 Training @ 75 epoch...
+00:48:05.637   Training iter 100, batch loss 2.3000, batch acc 0.1179
+00:48:07.150   Training iter 200, batch loss 2.3011, batch acc 0.1117
+00:48:08.629   Training iter 300, batch loss 2.3009, batch acc 0.1109
+00:48:09.931   Training iter 400, batch loss 2.3021, batch acc 0.1090
+00:48:11.523   Training iter 500, batch loss 2.3017, batch acc 0.1112
+00:48:12.903   Training iter 600, batch loss 2.3013, batch acc 0.1135
+00:48:12.909 Testing @ 75 epoch...
+00:48:13.126     Testing, total mean loss 2.30102, total acc 0.11350
+00:48:13.126 Training @ 76 epoch...
+00:48:14.925   Training iter 100, batch loss 2.3009, batch acc 0.1147
+00:48:16.777   Training iter 200, batch loss 2.3008, batch acc 0.1139
+00:48:18.643   Training iter 300, batch loss 2.3011, batch acc 0.1122
+00:48:20.084   Training iter 400, batch loss 2.3016, batch acc 0.1085
+00:48:21.957   Training iter 500, batch loss 2.3009, batch acc 0.1150
+00:48:23.531   Training iter 600, batch loss 2.3018, batch acc 0.1099
+00:48:23.537 Testing @ 76 epoch...
+00:48:23.913     Testing, total mean loss 2.30102, total acc 0.11350
+00:48:23.914 Training @ 77 epoch...
+00:48:26.109   Training iter 100, batch loss 2.3005, batch acc 0.1196
+00:48:28.239   Training iter 200, batch loss 2.3014, batch acc 0.1082
+00:48:29.759   Training iter 300, batch loss 2.3005, batch acc 0.1138
+00:48:31.048   Training iter 400, batch loss 2.3013, batch acc 0.1094
+00:48:32.915   Training iter 500, batch loss 2.3009, batch acc 0.1156
+00:48:35.292   Training iter 600, batch loss 2.3026, batch acc 0.1076
+00:48:35.307 Testing @ 77 epoch...
+00:48:35.594     Testing, total mean loss 2.30103, total acc 0.11350
+00:48:35.595 Training @ 78 epoch...
+00:48:38.258   Training iter 100, batch loss 2.3009, batch acc 0.1148
+00:48:39.717   Training iter 200, batch loss 2.3017, batch acc 0.1122
+00:48:40.901   Training iter 300, batch loss 2.3009, batch acc 0.1112
+00:48:42.260   Training iter 400, batch loss 2.3010, batch acc 0.1126
+00:48:43.892   Training iter 500, batch loss 2.3014, batch acc 0.1120
+00:48:45.790   Training iter 600, batch loss 2.3013, batch acc 0.1114
+00:48:45.795 Testing @ 78 epoch...
+00:48:46.042     Testing, total mean loss 2.30102, total acc 0.11350
+00:48:46.043 Training @ 79 epoch...
+00:48:48.015   Training iter 100, batch loss 2.3004, batch acc 0.1149
+00:48:49.731   Training iter 200, batch loss 2.3017, batch acc 0.1097
+00:48:51.396   Training iter 300, batch loss 2.3007, batch acc 0.1142
+00:48:53.102   Training iter 400, batch loss 2.3016, batch acc 0.1108
+00:48:54.778   Training iter 500, batch loss 2.3008, batch acc 0.1162
+00:48:56.447   Training iter 600, batch loss 2.3019, batch acc 0.1084
+00:48:56.450 Testing @ 79 epoch...
+00:48:56.660     Testing, total mean loss 2.30102, total acc 0.11350
+00:48:56.660 Training @ 80 epoch...
+00:48:59.207   Training iter 100, batch loss 2.3009, batch acc 0.1093
+00:49:00.661   Training iter 200, batch loss 2.3009, batch acc 0.1153
+00:49:02.751   Training iter 300, batch loss 2.3014, batch acc 0.1131
+00:49:04.586   Training iter 400, batch loss 2.3016, batch acc 0.1088
+00:49:05.818   Training iter 500, batch loss 2.3011, batch acc 0.1142
+00:49:07.443   Training iter 600, batch loss 2.3012, batch acc 0.1135
+00:49:07.451 Testing @ 80 epoch...
+00:49:07.674     Testing, total mean loss 2.30101, total acc 0.11350
+00:49:07.674 Training @ 81 epoch...
+00:49:10.177   Training iter 100, batch loss 2.3014, batch acc 0.1119
+00:49:12.630   Training iter 200, batch loss 2.3009, batch acc 0.1132
+00:49:14.944   Training iter 300, batch loss 2.3007, batch acc 0.1108
+00:49:16.280   Training iter 400, batch loss 2.3014, batch acc 0.1129
+00:49:17.900   Training iter 500, batch loss 2.3008, batch acc 0.1155
+00:49:19.422   Training iter 600, batch loss 2.3020, batch acc 0.1099
+00:49:19.427 Testing @ 81 epoch...
+00:49:19.656     Testing, total mean loss 2.30101, total acc 0.11350
+00:49:19.657 Training @ 82 epoch...
+00:49:21.705   Training iter 100, batch loss 2.3009, batch acc 0.1117
+00:49:23.604   Training iter 200, batch loss 2.3004, batch acc 0.1180
+00:49:25.397   Training iter 300, batch loss 2.3009, batch acc 0.1128
+00:49:26.989   Training iter 400, batch loss 2.3025, batch acc 0.1035
+00:49:28.512   Training iter 500, batch loss 2.3013, batch acc 0.1143
+00:49:29.871   Training iter 600, batch loss 2.3011, batch acc 0.1139
+00:49:29.874 Testing @ 82 epoch...
+00:49:30.085     Testing, total mean loss 2.30102, total acc 0.11350
+00:49:30.086 Training @ 83 epoch...
+00:49:31.681   Training iter 100, batch loss 2.3008, batch acc 0.1159
+00:49:33.358   Training iter 200, batch loss 2.3020, batch acc 0.1078
+00:49:35.415   Training iter 300, batch loss 2.3016, batch acc 0.1105
+00:49:36.709   Training iter 400, batch loss 2.3012, batch acc 0.1152
+00:49:37.678   Training iter 500, batch loss 2.3012, batch acc 0.1116
+00:49:38.670   Training iter 600, batch loss 2.3005, batch acc 0.1132
+00:49:38.673 Testing @ 83 epoch...
+00:49:38.886     Testing, total mean loss 2.30102, total acc 0.11350
+00:49:38.886 Training @ 84 epoch...
+00:49:40.325   Training iter 100, batch loss 2.3010, batch acc 0.1147
+00:49:41.522   Training iter 200, batch loss 2.3014, batch acc 0.1104
+00:49:42.653   Training iter 300, batch loss 2.3008, batch acc 0.1152
+00:49:44.093   Training iter 400, batch loss 2.3017, batch acc 0.1106
+00:49:45.525   Training iter 500, batch loss 2.3016, batch acc 0.1074
+00:49:46.665   Training iter 600, batch loss 2.3006, batch acc 0.1159
+00:49:46.670 Testing @ 84 epoch...
+00:49:46.880     Testing, total mean loss 2.30101, total acc 0.11350
+00:49:46.880 Training @ 85 epoch...
+00:49:48.500   Training iter 100, batch loss 2.3009, batch acc 0.1163
+00:49:50.729   Training iter 200, batch loss 2.3024, batch acc 0.1079
+00:49:52.652   Training iter 300, batch loss 2.3004, batch acc 0.1125
+00:49:54.388   Training iter 400, batch loss 2.3015, batch acc 0.1115
+00:49:55.760   Training iter 500, batch loss 2.3011, batch acc 0.1121
+00:49:57.221   Training iter 600, batch loss 2.3008, batch acc 0.1139
+00:49:57.226 Testing @ 85 epoch...
+00:49:57.468     Testing, total mean loss 2.30100, total acc 0.11350
+00:49:57.469 Training @ 86 epoch...
+00:49:59.298   Training iter 100, batch loss 2.3017, batch acc 0.1118
+00:50:00.779   Training iter 200, batch loss 2.3010, batch acc 0.1100
+00:50:02.208   Training iter 300, batch loss 2.3014, batch acc 0.1080
+00:50:03.838   Training iter 400, batch loss 2.3015, batch acc 0.1139
+00:50:05.485   Training iter 500, batch loss 2.3012, batch acc 0.1143
+00:50:06.881   Training iter 600, batch loss 2.3003, batch acc 0.1162
+00:50:06.886 Testing @ 86 epoch...
+00:50:07.135     Testing, total mean loss 2.30101, total acc 0.11350
+00:50:07.135 Training @ 87 epoch...
+00:50:08.470   Training iter 100, batch loss 2.3009, batch acc 0.1162
+00:50:09.619   Training iter 200, batch loss 2.3014, batch acc 0.1107
+00:50:11.077   Training iter 300, batch loss 2.3007, batch acc 0.1123
+00:50:13.028   Training iter 400, batch loss 2.3018, batch acc 0.1095
+00:50:14.633   Training iter 500, batch loss 2.3011, batch acc 0.1130
+00:50:16.199   Training iter 600, batch loss 2.3014, batch acc 0.1125
+00:50:16.204 Testing @ 87 epoch...
+00:50:16.437     Testing, total mean loss 2.30101, total acc 0.11350
+00:50:16.438 Training @ 88 epoch...
+00:50:18.109   Training iter 100, batch loss 2.3007, batch acc 0.1132
+00:50:19.285   Training iter 200, batch loss 2.3018, batch acc 0.1084
+00:50:20.407   Training iter 300, batch loss 2.3010, batch acc 0.1128
+00:50:21.859   Training iter 400, batch loss 2.3010, batch acc 0.1155
+00:50:23.699   Training iter 500, batch loss 2.3014, batch acc 0.1094
+00:50:25.594   Training iter 600, batch loss 2.3012, batch acc 0.1149
+00:50:25.597 Testing @ 88 epoch...
+00:50:25.845     Testing, total mean loss 2.30102, total acc 0.11350
+00:50:25.845 Training @ 89 epoch...
+00:50:27.302   Training iter 100, batch loss 2.3007, batch acc 0.1160
+00:50:28.392   Training iter 200, batch loss 2.3008, batch acc 0.1122
+00:50:29.536   Training iter 300, batch loss 2.3015, batch acc 0.1120
+00:50:30.810   Training iter 400, batch loss 2.3009, batch acc 0.1147
+00:50:32.005   Training iter 500, batch loss 2.3012, batch acc 0.1132
+00:50:33.186   Training iter 600, batch loss 2.3022, batch acc 0.1061
+00:50:33.190 Testing @ 89 epoch...
+00:50:33.426     Testing, total mean loss 2.30101, total acc 0.11350
+00:50:33.427 Training @ 90 epoch...
+00:50:35.384   Training iter 100, batch loss 2.3009, batch acc 0.1166
+00:50:36.813   Training iter 200, batch loss 2.3017, batch acc 0.1111
+00:50:38.761   Training iter 300, batch loss 2.3010, batch acc 0.1118
+00:50:40.721   Training iter 400, batch loss 2.3010, batch acc 0.1141
+00:50:42.460   Training iter 500, batch loss 2.3005, batch acc 0.1151
+00:50:44.010   Training iter 600, batch loss 2.3020, batch acc 0.1055
+00:50:44.012 Testing @ 90 epoch...
+00:50:44.247     Testing, total mean loss 2.30103, total acc 0.11350
+00:50:44.247 Training @ 91 epoch...
+00:50:46.211   Training iter 100, batch loss 2.3017, batch acc 0.1077
+00:50:47.647   Training iter 200, batch loss 2.3016, batch acc 0.1095
+00:50:49.182   Training iter 300, batch loss 2.3015, batch acc 0.1127
+00:50:50.751   Training iter 400, batch loss 2.3006, batch acc 0.1131
+00:50:52.160   Training iter 500, batch loss 2.3011, batch acc 0.1133
+00:50:54.102   Training iter 600, batch loss 2.3006, batch acc 0.1179
+00:50:54.104 Testing @ 91 epoch...
+00:50:54.343     Testing, total mean loss 2.30103, total acc 0.11350
+00:50:54.343 Training @ 92 epoch...
+00:50:56.441   Training iter 100, batch loss 2.3015, batch acc 0.1114
+00:50:58.172   Training iter 200, batch loss 2.3016, batch acc 0.1084
+00:51:00.347   Training iter 300, batch loss 2.3012, batch acc 0.1119
+00:51:03.185   Training iter 400, batch loss 2.3009, batch acc 0.1151
+00:51:05.280   Training iter 500, batch loss 2.3004, batch acc 0.1151
+00:51:06.688   Training iter 600, batch loss 2.3016, batch acc 0.1123
+00:51:06.693 Testing @ 92 epoch...
+00:51:06.905     Testing, total mean loss 2.30103, total acc 0.11350
+00:51:06.905 Training @ 93 epoch...
+00:51:08.605   Training iter 100, batch loss 2.3010, batch acc 0.1098
+00:51:09.990   Training iter 200, batch loss 2.3011, batch acc 0.1116
+00:51:11.495   Training iter 300, batch loss 2.3013, batch acc 0.1126
+00:51:12.877   Training iter 400, batch loss 2.3015, batch acc 0.1123
+00:51:14.162   Training iter 500, batch loss 2.3013, batch acc 0.1122
+00:51:15.688   Training iter 600, batch loss 2.3010, batch acc 0.1157
+00:51:15.691 Testing @ 93 epoch...
+00:51:15.944     Testing, total mean loss 2.30102, total acc 0.11350
+00:51:15.945 Training @ 94 epoch...
+00:51:17.997   Training iter 100, batch loss 2.3015, batch acc 0.1087
+00:51:19.707   Training iter 200, batch loss 2.3007, batch acc 0.1178
+00:51:21.452   Training iter 300, batch loss 2.3012, batch acc 0.1142
+00:51:22.964   Training iter 400, batch loss 2.3013, batch acc 0.1098
+00:51:24.308   Training iter 500, batch loss 2.3008, batch acc 0.1144
+00:51:26.058   Training iter 600, batch loss 2.3017, batch acc 0.1093
+00:51:26.061 Testing @ 94 epoch...
+00:51:26.311     Testing, total mean loss 2.30102, total acc 0.11350
+00:51:26.311 Training @ 95 epoch...
+00:51:27.821   Training iter 100, batch loss 2.3009, batch acc 0.1125
+00:51:29.370   Training iter 200, batch loss 2.3021, batch acc 0.1060
+00:51:30.863   Training iter 300, batch loss 2.3004, batch acc 0.1153
+00:51:32.196   Training iter 400, batch loss 2.3018, batch acc 0.1114
+00:51:33.557   Training iter 500, batch loss 2.3008, batch acc 0.1156
+00:51:35.189   Training iter 600, batch loss 2.3012, batch acc 0.1134
+00:51:35.195 Testing @ 95 epoch...
+00:51:35.434     Testing, total mean loss 2.30102, total acc 0.11350
+00:51:35.434 Training @ 96 epoch...
+00:51:37.368   Training iter 100, batch loss 2.3001, batch acc 0.1178
+00:51:39.277   Training iter 200, batch loss 2.3025, batch acc 0.1050
+00:51:41.300   Training iter 300, batch loss 2.3016, batch acc 0.1104
+00:51:42.670   Training iter 400, batch loss 2.2997, batch acc 0.1209
+00:51:43.882   Training iter 500, batch loss 2.3011, batch acc 0.1121
+00:51:45.218   Training iter 600, batch loss 2.3021, batch acc 0.1080
+00:51:45.224 Testing @ 96 epoch...
+00:51:45.479     Testing, total mean loss 2.30101, total acc 0.11350
+00:51:45.480 Training @ 97 epoch...
+00:51:48.060   Training iter 100, batch loss 2.3009, batch acc 0.1130
+00:51:49.465   Training iter 200, batch loss 2.3011, batch acc 0.1143
+00:51:51.056   Training iter 300, batch loss 2.3010, batch acc 0.1121
+00:51:52.878   Training iter 400, batch loss 2.3015, batch acc 0.1108
+00:51:54.666   Training iter 500, batch loss 2.3010, batch acc 0.1118
+00:51:57.012   Training iter 600, batch loss 2.3017, batch acc 0.1122
+00:51:57.020 Testing @ 97 epoch...
+00:51:57.274     Testing, total mean loss 2.30101, total acc 0.11350
+00:51:57.275 Training @ 98 epoch...
+00:51:59.424   Training iter 100, batch loss 2.3010, batch acc 0.1164
+00:52:00.958   Training iter 200, batch loss 2.3008, batch acc 0.1130
+00:52:02.221   Training iter 300, batch loss 2.3013, batch acc 0.1095
+00:52:03.792   Training iter 400, batch loss 2.3011, batch acc 0.1154
+00:52:05.146   Training iter 500, batch loss 2.3013, batch acc 0.1117
+00:52:06.644   Training iter 600, batch loss 2.3016, batch acc 0.1082
+00:52:06.647 Testing @ 98 epoch...
+00:52:06.896     Testing, total mean loss 2.30102, total acc 0.11350
+00:52:06.897 Training @ 99 epoch...
+00:52:08.985   Training iter 100, batch loss 2.3016, batch acc 0.1089
+00:52:11.153   Training iter 200, batch loss 2.3001, batch acc 0.1176
+00:52:13.462   Training iter 300, batch loss 2.3018, batch acc 0.1099
+00:52:15.734   Training iter 400, batch loss 2.3014, batch acc 0.1129
+00:52:17.437   Training iter 500, batch loss 2.3004, batch acc 0.1178
+00:52:18.992   Training iter 600, batch loss 2.3019, batch acc 0.1071
+00:52:18.998 Testing @ 99 epoch...
+00:52:19.220     Testing, total mean loss 2.30101, total acc 0.11350

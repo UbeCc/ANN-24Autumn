@@ -1,104 +1,115 @@
+import time
+import argparse
 from network import Network
 from utils import LOG_INFO
 from layers import Selu, HardSwish, Linear, Tanh
-from loss import KLDivLoss, SoftmaxCrossEntropyLoss, HingeLoss
+from loss import KLDivLoss, SoftmaxCrossEntropyLoss, HingeLoss, FocalLoss
 from solve_net import train_net, test_net
 from load_data import load_mnist_2d
+import wandb
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(description="Train a neural network on MNIST data.")
+    
+    parser.add_argument('--project', type=str, default='ANN-HW1', help='WandB project name')
+    parser.add_argument('--name', type=str, default='mlp_test', help='WandB run name')
+    
+    parser.add_argument('--learning_rate', type=float, default=1e-5, help='Learning rate for the optimizer')
+    parser.add_argument('--weight_decay', type=float, default=0.1, help='Weight decay for the optimizer')
+    parser.add_argument('--momentum', type=float, default=0.9, help='Momentum for the optimizer')
+    parser.add_argument('--batch_size', type=int, default=100, help='Batch size for training')
+    parser.add_argument('--max_epoch', type=int, default=100, help='Maximum number of training epochs')
+    parser.add_argument('--disp_freq', type=int, default=100, help='Frequency of displaying training progress')
+    parser.add_argument('--test_epoch', type=int, default=1, help='Frequency of testing the model')
+    parser.add_argument('--activation', type=str, default='selu', help='Activation function to use')
+    parser.add_argument('--loss', type=str, default='softmax', help='Loss function to use')
+    return parser.parse_args()
 
-train_data, test_data, train_label, test_label = load_mnist_2d('data')
+def main():
+    args = parse_arguments()
+    start_time = time.time()
+    wandb.init(
+        project=args.project,
+        name=f'{args.name}-{args.activation}-{args.loss}'
+    )
 
-model = Network()
+    activation_dict = {
+        'selu': Selu,
+        'hardswish': HardSwish,
+        'tanh': Tanh
+    }
+    
+    loss_dict = {
+        'kl': KLDivLoss,
+        'softmax': SoftmaxCrossEntropyLoss,
+        'hinge': HingeLoss,
+        'focal': FocalLoss   
+    }
+    
+    activation_fn = activation_dict[args.activation]
+    loss_fn = loss_dict[args.loss]
 
-# AlexNet-inspired architecture for MNIST
-model.add(Linear('fc1', 784, 512, 0.005))  # Smaller std for initialization
-model.add(Tanh('relu1'))                   # Switch to Selu if needed
+    train_data, test_data, train_label, test_label = load_mnist_2d('data')
 
-model.add(Linear('fc2', 512, 256, 0.005))
-model.add(Selu('relu2'))
+    model = Network()
 
-model.add(Linear('fc3', 256, 128, 0.005))
-model.add(Tanh('relu3'))
+    layers = [784, 128, 10]
+    # layers = [784, 245, 10]
+    # layers = [784, 245, 137, 77, 10]
+    # layers = [784, 438, 245, 183, 137, 77, 43, 24, 10]
+    # layers = [784, 586, 438, 328, 245, 227, 183, 137, 102, 77, 57, 43, 32, 24, 18, 13, 10]
+    acs = []
+    # acs = ['selu', 'selu', 'selu', 'selu']
+    # acs = ['hardswish', 'hardswish', 'hardswish', 'hardswish']
+    # acs = ['hardswish', 'hardswish', 'selu', 'selu']
+    # acs = ['selu', 'selu', 'hardswish', 'hardswish']
 
-model.add(Linear('fc4', 128, 10, 0.005))   # Output layer
+    for i in range(len(layers) - 1):
+        model.add(Linear('fc%d' % i, layers[i], layers[i + 1], 0.005))
+        if i != len(layers) - 2:
+            if not acs:
+                print('No activation function specified, using default Tanh')
+                model.add(activation_fn('ac%d' % i))
+            else:
+                model.add(activation_dict[acs[i]]('ac%d' % i))
 
-# Loss function
-loss = SoftmaxCrossEntropyLoss(name='loss')
+    # model.add(Linear('fc1', 784, 128, 0.005))
+    # model.add(activation_fn('ac'))
+    # model.add(Linear('fc2', 128, 10, 0.005))
+    # AlexNet-inspired architecture for MNIST
+    # model.add(Linear('fc1', 784, 512, 0.005))  # Smaller std for initialization
+    # model.add(Tanh('relu1'))                   # Switch to Selu if needed
+    # model.add(Linear('fc2', 512, 256, 0.005))
+    # model.add(Selu('relu2'))
+    # model.add(Linear('fc3', 256, 128, 0.005))
+    # model.add(Tanh('relu3'))
+    # model.add(Linear('fc4', 128, 10, 0.005))   # Output layer
 
-# Training configuration
-# You should adjust these hyperparameters
-# NOTE: one iteration means model forward-backwards one batch of samples.
-#       one epoch means model has gone through all the training samples.
-#       'disp_freq' denotes number of iterations in one epoch to display information.
+    # Loss function
+    loss = loss_fn(name='loss')
 
-config = {
-    'learning_rate': 0.01,
-    'weight_decay': 0.0001,  # Lower weight decay
-    'momentum': 0.5,         # Higher momentum
-    'batch_size': 32,        # Larger batch size
-    'max_epoch': 50,         # Reduced number of epochs
-    'disp_freq': 100,        # Less frequent display to speed up training
-    'test_epoch': 1          # Frequent testing to monitor progress
-}
+    config = {
+        'learning_rate': args.learning_rate,
+        'weight_decay': args.weight_decay,
+        'momentum': args.momentum,
+        'batch_size': args.batch_size,
+        'max_epoch': args.max_epoch,
+        'disp_freq': args.disp_freq,
+        'test_epoch': args.test_epoch
+    }
 
-for epoch in range(config['max_epoch']):
-    LOG_INFO('Training @ %d epoch...' % (epoch))
-    train_net(model, loss, config, train_data, train_label, config['batch_size'], config['disp_freq'])
+    for epoch in range(config['max_epoch']):
+        LOG_INFO('Training @ %d epoch...' % (epoch))
+        train_net(model, loss, config, train_data, train_label, config['batch_size'], config['disp_freq'])
 
-    if epoch % config['test_epoch'] == 0:
-        LOG_INFO('Testing @ %d epoch...' % (epoch))
-        test_net(model, loss, test_data, test_label, config['batch_size'])
+        if epoch % config['test_epoch'] == 0:
+            LOG_INFO('Testing @ %d epoch...' % (epoch))
+            test_net(model, loss, test_data, test_label, config['batch_size'])
+        
+        # last epoch
+        if epoch == config['max_epoch'] - 1:
+            # save the final result to wandb; final loss / final acc / total time cost
+            wandb.log({'total_time': time.time() - start_time})
 
-
-
-
-
-
-# from network import Network
-# from utils import LOG_INFO
-# from layers import Selu, HardSwish, Linear, Tanh
-# from loss import KLDivLoss, SoftmaxCrossEntropyLoss, HingeLoss
-# from solve_net import train_net, test_net
-# from load_data import load_mnist_2d
-
-
-# train_data, test_data, train_label, test_label = load_mnist_2d('data')
-
-# # Your model defintion here
-# # You should explore different model architecture
-# model = Network()
-# model.add(Linear('fc1', 784, 64, 0.01))
-# model.add(HardSwish('ac'))
-# model.add(Linear('fc1', 64, 10, 0.01))
-# # model.add(Selu('ac'))
-# # model.add(Linear('fc1', 64, 10, 0.01))
-# # model.add(Selu('ac'))
-
-# # loss = KLDivLoss(name='loss')
-# loss = SoftmaxCrossEntropyLoss(name='loss')
-# # loss = HingeLoss(name='loss')
-
-# # Training configuration
-# # You should adjust these hyperparameters
-# # NOTE: one iteration means model forward-backwards one batch of samples.
-# #       one epoch means model has gone through all the training samples.
-# #       'disp_freq' denotes number of iterations in one epoch to display information.
-
-# config = {
-#     'learning_rate': 0.001,
-#     'weight_decay': 0.01,
-#     'momentum': 0.1,
-#     'batch_size': 50,
-#     'max_epoch': 100,
-#     'disp_freq': 50,
-#     'test_epoch': 5
-# }
-
-
-# for epoch in range(config['max_epoch']):
-#     LOG_INFO('Training @ %d epoch...' % (epoch))
-#     train_net(model, loss, config, train_data, train_label, config['batch_size'], config['disp_freq'])
-
-#     if epoch % config['test_epoch'] == 0:
-#         LOG_INFO('Testing @ %d epoch...' % (epoch))
-#         test_net(model, loss, test_data, test_label, config['batch_size'])
+if __name__ == "__main__":
+    main()

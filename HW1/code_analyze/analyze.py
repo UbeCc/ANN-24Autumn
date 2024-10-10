@@ -121,7 +121,6 @@ def extract_modifications(text_pairs, stdout):
 def main():
     file_maps, missing_files, additional_files = mapping(args.origin_dir, args.target_dir)
     with open(args.output_file, "w", encoding='utf-8') as file:
-
         if missing_files:
             print("########################", file=file)
             file.write("# Missing Files\n")

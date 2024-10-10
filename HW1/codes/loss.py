@@ -79,9 +79,7 @@ class HingeLoss(object):
         grad[np.arange(input.shape[0]), idx] -= np.sum(mask, axis=1)
         return grad
         # TODO END
-        
-# Bonus
-# TODO: check correctness of FocalLoss
+
 class FocalLoss(object):
     def __init__(self, name, alpha=None, gamma=2.0):
         self.name = name
@@ -91,7 +89,7 @@ class FocalLoss(object):
 
     def forward(self, input, target):
         # TODO START
-        alpha = np.array(self.alpha).reshape(-1, 1)
+        alpha = np.array(self.alpha)
         mval = np.max(input, axis=1, keepdims=True)
         h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         cross_entropy = alpha * target + (1 - alpha) * (1 - target)
@@ -102,15 +100,15 @@ class FocalLoss(object):
     def backward(self, input, target):
         # TODO START
         # Reference: https://github.com/namdvt/Focal-loss-pytorch-implementation
-        alpha = np.array(self.alpha).reshape(-1, 1)
+        alpha = np.array(self.alpha)
         mval = np.max(input, axis=1, keepdims=True)
         h = np.exp(input - mval) / np.sum(np.exp(input - mval), axis=1, keepdims=True)
         cross_entropy = alpha * target + (1 - alpha) * (1 - target)
-        E = cross_entropy * (self.gamma * np.power(1 - h, self.gamma - 1) * target * np.log(h) - np.pow(1 - h, self.gamma) * target / h)
+        E = cross_entropy * (self.gamma * np.power(1 - h, self.gamma - 1) * target * np.log(h) - np.power(1 - h, self.gamma) * target / h)
         bsize, lines = E.shape[0], E.shape[1]
-        E_col, E_row, I = E.reshape(bsize, 1, lines), E.shape(bsize, lines, 1), np.eye(lines)
-        E_x = -E_row @ E_row + I * E_col
-        return np.sum(E_x * E[:, np.newaxis, :], axis=2)
+        h_col, h_row, I = h.reshape(bsize, 1, lines), h.reshape(bsize, lines, 1), np.eye(lines)
+        h_x = -h_row @ h_col + I * h_col
+        return np.sum(h_x * E[:, np.newaxis, :], axis=2)
         # TODO END
 
 if __name__ == "__main__":
