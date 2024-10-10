@@ -4,3 +4,5 @@
 **/*$py.class
 **/wandb/
 **/*.wandb
+**/augmented_cifar-10_data
+**/cifar-10_data

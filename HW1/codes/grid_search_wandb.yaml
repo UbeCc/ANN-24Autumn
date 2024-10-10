@@ -6,7 +6,7 @@ metric:
   goal: maximize
 parameters:
   learning_rate:
-    values: [0.001, 0.005, 0.01]
+    values: [0.0001, 0.00001, 0.000001]
   batch_size:
     values: [32, 64, 128]
   num_epochs:
@@ -14,7 +14,7 @@ parameters:
   momentum:
     values: [0.5, 0.7, 0.9]
   weight_decay:
-    values: [0.0001, 0.0005, 0.001]
+    values: [0.01, 0.001, 0.0001]
 
 # wandb sweep grid_search_wandb.yaml
 # wandb agent w7umfa1d
