@@ -13,7 +13,7 @@ from model import Model
 from load_data import load_cifar_4d
 torch.backends.cudnn.enabled = False
 
-use_wandb = True
+use_wandb = False
 if use_wandb:
 	wandb.init(
 		project="ANN-HW2",

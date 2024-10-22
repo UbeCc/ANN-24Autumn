@@ -14,7 +14,7 @@ from load_data import load_cifar_2d
 
 augmentation = True
 
-use_wandb = True
+use_wandb = False
 # use_wandb = False
 
 if use_wandb:

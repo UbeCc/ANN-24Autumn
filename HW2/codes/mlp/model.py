@@ -46,6 +46,7 @@ class BatchNorm1d(nn.Module):
 # remaining network nodes' output by 1/(1-p),. At testing time, we do nothing in the dropout layer. It's 
 # easy to find that this method has similar results to original dropout
 class Dropout(nn.Module):
+    # TODO START
 	def __init__(self, p=0.5):
 		super(Dropout, self).__init__()
 		self.p = p
@@ -61,6 +62,7 @@ class Dropout(nn.Module):
 		else:
 			# During testing
 			return input
+	# TODO END
 
 # model architecture: input -- Linear - BN - ReLU - Dropout - Linear - loss
 class Model(nn.Module):
